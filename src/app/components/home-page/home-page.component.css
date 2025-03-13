@@ -1,0 +1,268 @@
+@import "primeflex/primeflex.css";
+/*#region Home Page */
+/*#region Surface Section */
+
+
+.surface-section {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  padding: 2rem;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.text-primary {
+  color: #ffd700;
+}
+
+/* Bottone raised: dark blue per risaltare sul background chiaro */
+button[pButton].p-button-raised {
+  background-color: #0057a3;
+  color: #fff;
+  border: none;
+}
+
+/* Bottone outlined: trasparente con bordo e testo dark blue */
+button[pButton].p-button-outlined {
+  background-color: transparent;
+  border: 2px solid #0057a3;
+  color: #0057a3;
+}
+
+/* Stile base comune per entrambi i bottoni */
+button[pButton] {
+  min-width: 150px;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #0057a3;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Hover effect per entrambi */
+button[pButton]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+/* #endregion Surface Section */
+
+/* #region Flight Suggestion Section */
+.flight-suggestions {
+  padding: 40px;
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.suggestions-title {
+  font-size: 3rem;
+ font-weight: bold;
+ margin: 20px;
+ color: #333;
+ text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+ text-align: center;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ padding: 10px;
+ }
+
+
+.suggestions-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.suggestion-card {
+  position: relative;
+  width: 300px;
+  height: 450px;
+  border: 1px solid #cccccc45;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 10px 10px 10px rgba(234, 111, 234, 0.247);
+  border : 1.5px solid rgba(238, 86, 241, 0.937);
+}
+
+.card-img-container {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.suggestion-card:hover .card-img {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.p-card-title {
+  font-size: 1.3rem; /* Testo più piccolo */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.p-card-subtitle {
+  font-size: 1rem; /* Testo più piccolo */
+  color: #777;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 0.95rem; /* Testo più piccolo */
+  color: #555;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* #endregion Flight Suggestion Section */
+
+
+
+/* #region footer */
+.footer {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.footer-highlight {
+  color: #007bff;
+}
+
+.footer-description {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Griglia adattata per il footer */
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Stile delle card nel footer */
+.footer-card {
+  background: none;
+  text-align: center;
+  max-width: 200px;
+}
+
+/* Icone con hover */
+.footer-card i {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.footer-card i:hover {
+  transform: scale(1.1);
+  color: #0056b3;
+  cursor: pointer;
+}
+
+/* Testo delle card */
+.footer-card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.footer-card-description {
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.4;
+  padding: 0 10px;
+}
+/* #endregion footer */
+
+/* #region Chart-Section */
+.chart-section {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  text-align: center;
+  position: relative;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.chart-header i {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+.chart-title-container {
+  text-align: left;
+}
+
+.chart-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.chart-description {
+  font-size: 1.1rem;
+  color: #777;
+}
+
+.chart-footer {
+  margin-top: 20px;
+}
+
+.footer-note {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.chart-section .p-chart {
+  border-radius: 10px;
+}
+
+.chart-section p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* #endregion Chart-Section */
+
+/*#endregion Home Page */

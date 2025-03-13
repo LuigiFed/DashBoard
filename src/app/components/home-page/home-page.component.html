@@ -1,0 +1,88 @@
+<div class="grid grid-nogutter surface-section ">
+  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
+      <section>
+          <span class="block text-6xl font-bold mb-1">Welcome Aboard</span>
+          <div class="text-6xl text-primary font-bold mb-3">to the Ultimate Flight Tracker</div>
+          <p class="mt-0 mb-4  line-height-3">
+              Experience real-time flight tracking like never before.
+              Stay updated with live flight data, seamless connections, and a view into the future of travel.
+              Buckle up and let your journey begin!
+          </p>
+          <button pButton pRipple label="Get Started" type="button" class="mr-3 p-button-raised"></button>
+          <button pButton pRipple label="Explore Features" type="button" class="p-button-outlined"></button>
+      </section>
+  </div>
+  <div class="col-12 md:col-6 overflow-hidden">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/040/862/397/small/ai-generated-a-commercial-civil-aircraft-lands-on-the-runway-at-the-airport-travel-and-transport-concept-ai-generated-image-photo.jpg" alt="Flight Tracker" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%);">
+  </div>
+</div>
+
+<!-- Flights suggestions -->
+<div class="flight-suggestions">
+  <h2 class="suggestions-title">Travel Suggestions</h2>
+  <div class="suggestions-container">
+    <div *ngFor="let suggestion of travelSuggestions" class="suggestion-card">
+
+        <div class="card-img-container">
+          <img alt="Card" class="card-img" [src]="suggestion.image" />
+        </div>
+        <div class="card-content">
+          <div class="p-card-title">{{ suggestion.destination }}</div>
+          <div class="p-card-subtitle">{{ suggestion.season }}</div>
+          <p>{{ suggestion.reason }}</p>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Flight Data Chart Section -->
+<div class="chart-section">
+  <div class="chart-header">
+    <i class="pi pi-chart-bar text-blue-600"></i>
+    <div class="chart-title-container">
+      <div class="chart-title">Flight Data Overview</div>
+      <div class="chart-description">Real-time flight statistics, showing the number of flights per time of day.</div>
+    </div>
+  </div>
+
+  <p-chart type="bar" [data]="flightData" [options]="chartOptions"></p-chart>
+
+  <div class="chart-footer">
+    <span class="footer-note">Data updated every 10 minutes.</span>
+  </div>
+</div>
+
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-title">
+      <span>Track Your </span>
+      <span class="footer-highlight">Flight Live</span>
+  </div>
+  <div class="footer-description">
+      Get real-time updates, schedules, and weather insights for seamless travel.
+  </div>
+  <div class="footer-grid">
+      <div class="footer-card">
+          <i class="pi pi-map-marker"></i>
+          <div class="footer-card-title">Live Tracking</div>
+          <div class="footer-card-description">Monitor flights in real-time worldwide.</div>
+      </div>
+      <div class="footer-card">
+          <i class="pi pi-bell"></i>
+          <div class="footer-card-title">Instant Alerts</div>
+          <div class="footer-card-description">Get notified for flight delays and status updates.</div>
+      </div>
+      <div class="footer-card">
+          <i class="pi pi-cloud"></i>
+          <div class="footer-card-title">Weather Updates</div>
+          <div class="footer-card-description">Know the weather at your departure and arrival airports.</div>
+      </div>
+  </div>
+
+</footer>
+

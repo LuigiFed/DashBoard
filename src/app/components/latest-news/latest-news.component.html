@@ -1,11 +1,13 @@
-<p-fieldset class="news-container" legend="News" *ngFor="let news of lastNews">
-  <p class="m-0 news">
-    <strong *ngIf="news.TITOLO">{{ news.TITOLO }}</strong><br>
-
-    <span *ngIf="news.DESCRIZIONE">{{ news.DESCRIZIONE }}</span><br>
-    <br>
-
-    <small *ngIf="news.FONTE">{{ news.FONTE }}</small>
-  </p>
-</p-fieldset>
-
+<div class="news-container">
+  <div class="news-card" *ngFor="let news of lastNews">
+    <div class="news-header">
+      <h3 *ngIf="news.titolo">{{ news.titolo }}</h3>
+    </div>
+    <div class="news-body">
+      <p *ngIf="news.descrizione">{{ news.descrizione }}</p>
+    </div>
+    <div class="news-footer">
+      <small *ngIf="news.fonte">Fonte: {{ news.fonte }}</small>
+    </div>
+  </div>
+</div>

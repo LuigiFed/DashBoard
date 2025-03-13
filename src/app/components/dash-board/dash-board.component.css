@@ -1,40 +1,61 @@
-.menu li{
-  list-style-type: none;
-  padding: 10px;
-  overflow: hidden;
+/* #region Menu nella toolbar */
+
+
+.menu {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
   width: 100%;
+  background-color: #326ff1;
 }
 
 .menu li {
-  float: left;
+  list-style-type: none;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+  padding: 15px;
   transition: background-color 0.3s;
   color: rgba(255, 255, 255, 0.963);
   cursor: pointer;
-  width: 100%;
-  text-align: left;
-  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.menu li i {
+  margin-right: 8px;
+  font-size: 1.2em;
 }
 
 .menu li:hover {
+  background-color: #6ee4e476;
+  color: #fff;
+  transition: background-color 0.3s;
+  transition: color 0.3s;
+  transition: transform 0.3s;
+
+}
+
+.menu li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.menu li.active {
   background-color: #35cefc;
+  color: #fff;
 }
 
-
-.panel-1 {
-  background-color: #0381f6;
+.p-button {
+  margin-right: 10px;
 }
 
-.panel-2 {
-  flex-grow: 1;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+.menu p {
+  margin: 0;
 }
-
-::ng-deep .p-toolbar {
-  background-color: #007bfffc!important;
-  color: white !important;
-}
-
-
-
+/* #endregion Menu */

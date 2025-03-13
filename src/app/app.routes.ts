@@ -6,13 +6,19 @@ import { FlightsDetailsComponent } from './components/flights-details/flights-de
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddFlightsComponent } from './components/add-flights/add-flights.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { MapComponent } from './components/map/map.component';
+
+
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard/home', pathMatch: 'full' },
   {
     path: 'dashboard',
     component: DashBoardComponent,
     children: [
+      {path: 'home', component: HomePageComponent},
+      { path: 'map', component: MapComponent },
       { path: 'flights', component: FlightsComponent },
       { path: 'lastnews', component: LatestNewsComponent },
       { path: 'addflights', component: AddFlightsComponent },
@@ -23,7 +29,7 @@ export const routes: Routes = [
     ]
   },
 
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '**', redirectTo: 'dashboard/home' }
 
 ];
 

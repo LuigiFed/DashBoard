@@ -11,6 +11,7 @@ import { MenuItem } from 'primeng/api';
 
 
 
+
 @Component({
   selector: 'app-dash-board',
   imports: [SplitterModule, ButtonModule, MenuModule, CommonModule, RouterLink, ToolbarModule, InputTextModule,RouterOutlet],
@@ -19,21 +20,10 @@ import { MenuItem } from 'primeng/api';
 })
 export class DashBoardComponent {
 
-  items: MenuItem[] | undefined;
 
 
-  ngOnInit() {
-      this.items = [
-          {
-              label: 'Update',
-              icon: 'pi pi-refresh'
-          },
-          {
-              label: 'Delete',
-              icon: 'pi pi-times'
-          }
-      ];
-  }
+
+
 
 
 

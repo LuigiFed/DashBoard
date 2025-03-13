@@ -1,0 +1,85 @@
+/* Impostazioni globali per la mappa */
+#map {
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3); /* Ombra più marcata */
+  position: relative;
+  background-color: #f0f0f0;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  scroll-behavior: smooth;
+}
+
+/* Mappa con aspetto pulito senza effetti grigi */
+.leaflet-tile {
+  filter: none; /* Rimuove qualsiasi filtro di colore */
+  border-radius: 10px; /* Angoli arrotondati per il tile */
+}
+
+/* Hover marker con effetto pulsante */
+.leaflet-marker-icon {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  opacity: 0.9;
+  border-radius: 50%;
+  background-color: #ff5722; /* Colore iniziale per il marker */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Ombra per i marker */
+}
+
+/* Aggiungere un effetto hover dinamico ai marker */
+.leaflet-marker-icon:hover {
+  transform: scale(1.4); /* Ingrandire il marker al passaggio del mouse */
+  opacity: 1; /* Aumenta la visibilità */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8); /* Ombra più forte */
+  background-color: #00bcd4; /* Cambia il colore al passaggio del mouse */
+  animation: pulse 1.5s ease-in-out infinite; /* Aggiungi un'animazione di pulsazione */
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Controlli della mappa stilizzati */
+.leaflet-control-layers,
+.leaflet-control-zoom {
+  background: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente */
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease-in-out;
+}
+
+/* Hover controlli della mappa */
+.leaflet-control-layers:hover,
+.leaflet-control-zoom:hover {
+  background: rgba(255, 255, 255, 1); /* Maggiore visibilità al passaggio del mouse */
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+.leaflet-container {
+  transition: transform 0.3s ease-in-out;
+}
+.map-container {
+  position: relative;
+  height: 600px;
+  max-width: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}

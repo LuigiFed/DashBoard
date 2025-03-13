@@ -20,12 +20,15 @@ export class HttpFlightsService {
     }
 
     postFlight(url: string, data: any): Observable<any> {
+
       return this.http.post(url, data, {
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+
+
+
 
 }
-
+}
 
 

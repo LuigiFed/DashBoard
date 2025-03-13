@@ -5,6 +5,7 @@
   width: 100%;
 }
 
+
 .custom-header {
   background-color: #007bfffc;
   color: white;
@@ -25,6 +26,66 @@
 .carrier-logo {
   width: 80px;
 }
+
+.edit-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.edit-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  background-color: #fff;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+  transform: scale(1.05);
+}
+
+.edit-btn {
+  background-color: #ffb300;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.edit-btn:hover {
+  background-color: #e6a200;
+  transform: scale(1.05);
+}
+
+.save-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.save-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
 
 /* #region dot status */
 
