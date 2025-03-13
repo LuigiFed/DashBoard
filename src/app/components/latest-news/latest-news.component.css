@@ -1,0 +1,14 @@
+.news-container {
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  display: block;
+
+}
+
+.news {
+  text-align: left;
+  padding: 10px;
+  width: 70%;
+
+}

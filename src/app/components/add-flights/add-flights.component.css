@@ -1,0 +1,99 @@
+/* Stile generale del form */
+form {
+  width: 60%;
+  margin: 40px auto;
+  padding: 10px;
+  background: linear-gradient(145deg, #f7f9fc, #e0e7ff);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  animation: fadeIn 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* Stile per le etichette */
+label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1em;
+  display: block;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+  text-align: center;
+}
+
+/* Cambia il colore dell'etichetta quando si passa sopra */
+label:hover {
+  color: #007bff;
+}
+
+/* Stile per gli input */
+input {
+  width: 300px; /* Cambia la larghezza per adattarsi meglio */
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Placeholder per gli input */
+input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Bottone di submit */
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 25px;
+  width: 20%; /* Stessa larghezza dell'input */
+  margin: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Effetto hover sul bottone */
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Effetto focus sul bottone */
+button[type="submit"]:focus {
+  outline: none;
+}
+
+/* Media Query per schermi piccoli */
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+    padding: 25px;
+  }
+
+  button[type="submit"] {
+    padding: 15px 20px;
+    width: 80%; /* Più largo su schermi piccoli */
+  }
+
+  input {
+    width: 80%; /* Più largo su schermi piccoli */
+  }
+}

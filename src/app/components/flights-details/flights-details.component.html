@@ -1,0 +1,32 @@
+<div *ngIf="voloSelezionato"  class="container">
+  <div class="mb-4 p-8 flex justify-center items-center">
+    <p-card [style]="{ width: '40rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <p style="text-align: center;font-size: 20px;">
+          <strong>Numero volo : </strong>{{numeroVolo}}
+        </p>
+        <p style="text-align: center;">
+          <img [src]="voloSelezionato.LOGO" alt="Logo" width="300">
+        </p>
+      </ng-template>
+      <p style="text-align: center;">Departure: {{voloSelezionato.PARTENZA}}</p>
+      <ng-template #subtitle>
+        <p style="text-align: center;">Arrival: {{voloSelezionato.DESTINAZIONE}}</p>
+      </ng-template>
+      <ng-template #subtitle>
+        <p style="text-align: center;">{{voloSelezionato.CHECK_IN}}</p>
+      </ng-template>
+      <p style="text-align: center;">
+        <strong>Gate:</strong> {{voloSelezionato.GATE}}
+      </p>
+
+      <div class="status-container">
+        <strong>Status:</strong> {{voloSelezionato.STATUS}}
+        <span [ngClass]="{
+          'status-dot-red': voloSelezionato.status === 'Gate Closing',
+          'status-dot-green': voloSelezionato.status === 'Boarding'
+        }"></span>
+      </div>
+    </p-card>
+  </div>
+</div>

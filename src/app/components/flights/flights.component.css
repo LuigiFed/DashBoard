@@ -1,0 +1,61 @@
+.custom-table {
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.custom-header {
+  background-color: #007bfffc;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  table-layout: fixed;
+}
+
+.custom-row {
+  background-color: #f1f1f1;
+}
+
+.custom-row:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.carrier-logo {
+  width: 80px;
+}
+
+/* #region dot status */
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot-red,
+.status-dot-green {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+.status-dot-red {
+  background-color: red;
+}
+
+.status-dot-green {
+  background-color: green;
+}
+
+
+@keyframes blink {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* #endregion dot status */

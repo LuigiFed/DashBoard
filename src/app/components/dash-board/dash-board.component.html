@@ -1,0 +1,98 @@
+
+
+<div class="card">
+
+  <p-toolbar [ngStyle]="{ 'background-color': '#4CAF50', 'color': 'white' }">
+    <p>
+    <p-button routerLink="/dashboard/signUp" icon="pi pi-user-plus" text="Sign Up" severity="contrast" />
+    <p-button routerLink="/dashboard/logIn" icon="pi pi-sign-in" text severity="contrast" /></p>
+  </p-toolbar>
+
+  <p-splitter [panelSizes]="[10, 90]" [style]="{ height: '1000px'}" styleClass="mb-8">
+    <ng-template #panel>
+      <div class="flex items-center justify-center h-full panel-1">
+        <ul class="menu" style="margin: 0; padding: 0">
+          <li [routerLink]="['/dashboard/flights']" routerLinkActive="router-link-active">Flights</li>
+          <li [routerLink]="['/dashboard/lastnews']" routerLinkActive="router-link-active">Latest News</li>
+          <li [routerLink]="['/dashboard/addflights']" routerLinkActive="router-link-active">Add Flights</li>
+          <li>List3</li>
+        </ul>
+      </div>
+    </ng-template>
+    <ng-template #panel>
+      <div class="flex flex-col h-full panel-2">
+        <router-outlet></router-outlet>
+      </div>
+    </ng-template>
+  </p-splitter>
+</div>
+
+
+
+  <footer style="background-color: #0381f6; color: #ffffff; padding: 30px;text-align: center;">
+  <div class="footer-content">
+      <div class="footer-menu" style="display: flex; justify-content: space-around; flex-wrap: wrap;text-align: left;">
+        <div class="footer-section" style="margin: 0 20px;">
+              <h4>Flights</h4>
+              <ul style="list-style: none; padding: 0;">
+                  <li><i class="fas fa-plane-departure"></i> Real time departures</li>
+                  <li><i class="fas fa-plane-arrival"></i> Real time arrivals</li>
+                  <li><i class="fas fa-plane"></i> Direct flights</li>
+                  <li><i class="fas fa-ticket-alt"></i> Book your flight</li>
+              </ul>
+          </div>
+          <div class="footer-section" style="margin: 0 20px;">
+              <h4>Parking</h4>
+              <ul style="list-style: none; padding: 0;">
+                  <li><i class="fas fa-parking"></i> Info Parking</li>
+                  <li><i class="fas fa-shopping-cart"></i> Buy parking</li>
+              </ul>
+          </div>
+          <div class="footer-section" style="margin: 0 20px;">
+              <h4>Transportation</h4>
+              <ul style="list-style: none; padding: 0;">
+                  <li><i class="fas fa-bus"></i> Info mobility - ZTC</li>
+                  <li><i class="fas fa-map-marker-alt"></i> How to arrive</li>
+              </ul>
+          </div>
+          <div class="footer-section" style="margin: 0 20px;">
+              <h4>Shop & Eat</h4>
+              <ul style="list-style: none; padding: 0;">
+                  <li><i class="fas fa-store"></i> Shops and Travel Services</li>
+                  <li><i class="fas fa-utensils"></i> Bars and Restaurants</li>
+              </ul>
+          </div>
+          <div class="footer-section" style="margin: 0 20px;">
+              <h4>Info & Services</h4>
+              <ul style="list-style: none; padding: 0;">
+                  <li><i class="fas fa-id-card"></i> Fidelity Card</li>
+                  <li><i class="fas fa-plane-departure"></i> Departure</li>
+                  <li><i class="fas fa-user-alt"></i> Special assistance</li>
+                  <li><i class="fas fa-user-tie"></i> Vip lounge</li>
+                  <li><i class="fas fa-rocket"></i> Fast Track</li>
+              </ul>
+          </div>
+          <div class="footer-section" style="margin: 0 20px;">
+              <h4>Press & Media</h4>
+              <ul style="list-style: none; padding: 0;">
+                  <li><i class="fas fa-newspaper"></i> Press Releases</li>
+                  <li><i class="fas fa-images"></i> Photos and videos</li>
+              </ul>
+          </div>
+      </div>
+      <div class="footer-address" style="margin-top: 20px;">
+        <p style="margin-bottom: 10px;">© 2025 Aeroporto di Napoli. Tutti i diritti riservati.</p>
+        <p>Via dell'Aeroporto, 1 - 80144 Napoli, Italia</p>
+
+
+      </div>
+      <div class="footer-social" style="margin-top: 20px;">
+          <a href="#" style="color: #ffffff; margin: 0 10px;text-decoration: none;"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="#" style="color: #ffffff; margin: 0 10px;text-decoration: none;"><i class="fab fa-twitter"></i> Twitter</a>
+          <a href="#" style="color: #ffffff; margin: 0 10px;text-decoration: none;"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+  </div>
+</footer>
+
+
+

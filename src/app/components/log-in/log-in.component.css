@@ -1,0 +1,29 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(37, 150, 242, 0.482);
+  max-width: 500px;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.217);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: white;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    color: #21212145;
+  }
+}

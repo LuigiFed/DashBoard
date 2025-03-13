@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://flights-3afb2-default-rtdb.europe-west1.firebasedatabase.app/",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

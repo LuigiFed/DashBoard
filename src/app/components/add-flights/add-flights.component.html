@@ -1,0 +1,35 @@
+<form #flightForm="ngForm" (ngSubmit)="addVolo(flightForm.value, $event, flightForm)">
+  <div>
+    <label for="numeroVolo">Numero Volo:</label>
+    <input id="numeroVolo" type="text" name="numeroVolo" ngModel required placeholder="Es. AB1234">
+  </div>
+  <div>
+    <label for="compagniaAerea">Compagnia Aerea:</label>
+    <input id="compagniaAerea" type="text" name="compagniaAerea" ngModel required placeholder="Es. Airline">
+  </div>
+  <div>
+    <label for="destinazione">Destinazione:</label>
+    <input id="destinazione" type="text" name="destinazione" ngModel required placeholder="Es. MAL - Malpensa">
+  </div>
+  <div>
+    <label for="checkin">Check-in:</label>
+    <input id="checkin" type="text" name="checkin" ngModel required placeholder="Es. 12:00">
+  </div>
+  <div>
+    <label for="gate">Gate:</label>
+    <input id="gate" type="text" name="gate" ngModel required placeholder="Es. A1">
+  </div>
+  <div>
+    <label for="logo">Logo:</label>
+    <input id="logo" type="text" name="logo" ngModel placeholder="Es. logo.png">
+  </div>
+  <div>
+    <label for="partenza">Partenza:</label>
+    <input id="partenza" type="text" name="partenza" ngModel required placeholder="Es. NAP - Aereoporto int..">
+  </div>
+  <div>
+    <label for="status">Status:</label>
+    <input id="status" type="text" name="status" ngModel required placeholder="Es. On Time">
+  </div>
+  <button type="submit">Aggiungi Volo</button>
+</form>

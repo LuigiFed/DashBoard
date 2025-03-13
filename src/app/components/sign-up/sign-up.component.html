@@ -1,0 +1,14 @@
+<form class="signup-form" #signupform="ngForm" (ngSubmit)="onSubmit(signupform)">
+  <h1 style="color: white;">Registrati</h1>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" ngModel="email" required>
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" name="password" ngModel="password" required minlength="8">
+  </div>
+  <div>
+    <button type="submit" class="btn-signup" [disabled]="!signupform.valid">Registarti</button>
+  </div>
+</form>

@@ -1,0 +1,56 @@
+
+<p-toolbar>
+  <ng-template #start>
+    <p-button icon="pi pi-plus" class="mr-2" text severity="contrast" />
+    <p-button icon="pi pi-print" class="mr-2" text severity="contrast" />
+    <p-button icon="pi pi-upload" text severity="contrast" />
+  </ng-template>
+
+  <ng-template #center>
+    <div class="p-inputgroup">
+      <input type="text" pInputText placeholder="Search.." [(ngModel)]="cercaVoli" (input)="filtraVoli()" />
+
+    </div>
+  </ng-template>
+</p-toolbar>
+
+<p-table [value]="voliFiltrati" [resizableColumns]="true" columnResizeMode="expand"
+  styleClass="custom-table" [tableStyle]="{'min-width': '50rem', 'background-color': '#f8f9fa'}">
+
+  <ng-template #header>
+      <tr>
+
+          <th pResizableColumn class="custom-header">Flight Number</th>
+          <th pResizableColumn class="custom-header">Carrier</th>
+          <th pResizableColumn class="custom-header">Destination</th>
+          <th pResizableColumn class="custom-header">Check-in</th>
+          <th pResizableColumn class="custom-header">Gate</th>
+          <th pResizableColumn class="custom-header">Status</th>
+      </tr>
+  </ng-template>
+  <ng-template #body let-volo>
+    <tr class="custom-row" (click)="goToFlightDetails(volo.NUMERO_VOLO)">
+      <td *ngIf="volo.NUMERO_VOLO">{{ volo.NUMERO_VOLO }}</td>
+      <td *ngIf="volo.LOGO">
+        <img [src]="volo.LOGO" alt="Carrier Logo" class="carrier-logo" />
+      </td>
+      <td *ngIf="volo.DESTINAZIONE">{{ volo.DESTINAZIONE }}</td>
+      <td *ngIf="volo.CHECK_IN">{{ volo.CHECK_IN }}</td>
+      <td *ngIf="volo.GATE">{{ volo.GATE }}</td>
+      <td *ngIf="volo.STATUS">
+        <div class="status-container">
+          {{ volo.STATUS }}
+          <span [ngClass]="{
+            'status-dot-red': volo.STATUS === 'Gate Closing',
+            'status-dot-green': volo.STATUS === 'Boarding'
+          }"></span>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+
+
+</p-table>
+
+
