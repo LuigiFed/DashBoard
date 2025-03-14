@@ -66,15 +66,4 @@ if (isMainModule(import.meta.url)) {
  */
 export const reqHandler = createNodeRequestHandler(app);
 
-export function getPrerenderParams(route: string): string[] {
-  // Ritorna un array vuoto o rimuovi questa funzione se non necessaria
-  return [];
-}
 
-app.get('/dashboard/flightsDetails/:numeroVolo', (req, res) => {
-
-  res.render('AppServerModule', {
-    url: req.url,
-    renderMode: 'default'
-  });
-});

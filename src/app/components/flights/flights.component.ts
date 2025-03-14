@@ -44,6 +44,7 @@ export class FlightsComponent {
             console.log("Elementi dei voli:", res.result.elements);
             this.voli = res.result.elements;
             this.voliFiltrati = this.voli;
+
           } else {
             console.error('Errore: mancanti gli elementi nella risposta', res);
           }
@@ -57,6 +58,7 @@ export class FlightsComponent {
         console.log("Errore durante la richiesta:",err);
 
       });
+
 
       /*this.firebase.postFlight('http://localhost:8080/flightservlet')
 
@@ -72,6 +74,7 @@ export class FlightsComponent {
       );*/
 
     }
+
 
     vaiAllaPagina() {
       this.router.navigate(['/dashboard/addflights']);
