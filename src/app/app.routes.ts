@@ -11,6 +11,7 @@ import { MapComponent } from './components/map/map.component';
 
 
 
+
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard/home', pathMatch: 'full' },
   {
@@ -22,7 +23,7 @@ export const routes: Routes = [
       { path: 'flights', component: FlightsComponent },
       { path: 'lastnews', component: LatestNewsComponent },
       { path: 'addflights', component: AddFlightsComponent },
-      { path: 'flightsDetails/:numeroVolo', component: FlightsDetailsComponent },
+      { path: 'flightsDetails', component: FlightsDetailsComponent },
       { path: 'logIn', component: LogInComponent},
       {path: 'signUp', component: SignUpComponent },
 

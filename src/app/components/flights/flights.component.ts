@@ -44,7 +44,6 @@ export class FlightsComponent {
             console.log("Elementi dei voli:", res.result.elements);
             this.voli = res.result.elements;
             this.voliFiltrati = this.voli;
-            const prerenderRoutes = this.generatePrerenderRoutes(this.voli);
 
           } else {
             console.error('Errore: mancanti gli elementi nella risposta', res);
@@ -74,14 +73,6 @@ export class FlightsComponent {
         }
       );*/
 
-    }
-
-    generatePrerenderRoutes(voloList: any[]): any[] {
-
-      return voloList.map(flight => ({
-        path: `/dashboard/flightsDetails/${flight.numeroVolo}`,
-        params: { numeroVolo: flight.numeroVolo }
-      }));
     }
 
 
@@ -114,7 +105,9 @@ export class FlightsComponent {
           goToFlightDetails(numeroVolo: string) {
             console.log('Numero volo passato:', numeroVolo);
             if (numeroVolo && numeroVolo.trim() !== '') {
-              this.router.navigate(['/dashboard/flightsDetails', numeroVolo]);
+              this.router.navigate(['/dashboard/flightsDetails'], {
+                queryParams: { numeroVolo: numeroVolo }
+              });
             } else {
               console.error('Numero volo non valido:', numeroVolo);
             }

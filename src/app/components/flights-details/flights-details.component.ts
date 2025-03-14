@@ -38,20 +38,25 @@ export class FlightsDetailsComponent implements OnInit {
 
   //   });
   // }
+
+
+  this.route.queryParams.subscribe(params => {
+    this.numeroVolo = params['numeroVolo'] || '';
+    console.log('Numero volo dai query params:', this.numeroVolo);
+
+
     let flight = new Flight();
-        this.requestor.sendSync([flight], 'search', 'http://localhost:8080/flightservlet').subscribe((res: any) => {
-         this.dettagliVolo = res.result.elements;
-         this.voli = Object.values(res.result.elements);
-         this.numeroVolo = this.route.snapshot.paramMap.get('numeroVolo') || '';
-         console.log('Numero volo dalla route:', this.numeroVolo);
-         this.voloSelezionato = this.voli.find(volo => String(volo.numeroVolo) === String(this.numeroVolo));
-
-
-        }, err  => {
-
-          console.log("Errore durante la richiesta:",err);
-
-        });
+    this.requestor.sendSync([flight], 'search', 'http://localhost:8080/flightservlet')
+      .subscribe((res: any) => {
+        this.dettagliVolo = res.result.elements;
+        this.voli = Object.values(res.result.elements);
+        this.voloSelezionato = this.voli.find(volo =>
+          String(volo.numeroVolo) === String(this.numeroVolo)
+        );
+      }, err => {
+        console.log("Errore durante la richiesta:", err);
+      });
+  });
   }
 
 
