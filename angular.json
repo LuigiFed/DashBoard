@@ -90,7 +90,12 @@
             "tsConfig": "tsconfig.spec.json",
            "assets": [
                   "src/assets",
-                  "src/favicon.ico"
+                  "src/favicon.ico",
+                  {
+                    "glob": "**/*",
+                    "input": "public",
+                    "output": "/"
+                  }
                 ],
             "styles": [
               "src/styles.css",
