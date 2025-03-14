@@ -36,7 +36,7 @@ export class FlightsComponent {
 
     ngOnInit() {
       let flight = new Flight();
-      this.requestor.sendSync([flight], 'search', 'http://localhost:8080/flightservlet').subscribe((res: any) => {
+      this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet/').subscribe((res: any) => {
 
         if (res && res.result && res.result.elements) {
           console.log(res.result.elements);

@@ -46,7 +46,7 @@ export class FlightsDetailsComponent implements OnInit {
 
 
     let flight = new Flight();
-    this.requestor.sendSync([flight], 'search', 'http://localhost:8080/flightservlet')
+    this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet/')
       .subscribe((res: any) => {
         this.dettagliVolo = res.result.elements;
         this.voli = Object.values(res.result.elements);
