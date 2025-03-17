@@ -114,7 +114,7 @@ button[pButton]:hover {
 }
 
 .p-card-title {
-  font-size: 1.3rem; /* Testo più piccolo */
+  font-size: 1.3rem;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
@@ -122,13 +122,13 @@ button[pButton]:hover {
 }
 
 .p-card-subtitle {
-  font-size: 1rem; /* Testo più piccolo */
+  font-size: 1rem;
   color: #777;
   margin-bottom: 15px;
 }
 
 p {
-  font-size: 0.95rem; /* Testo più piccolo */
+  font-size: 0.95rem;
   color: #555;
   line-height: 1.5;
   text-align: center;
@@ -265,4 +265,61 @@ p {
 
 /* #endregion Chart-Section */
 
+/*#endregion Home Page */
+/* #region Responsive */
+@media (max-width: 768px) {
+  .surface-section {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .suggestions-title {
+    font-size: 1.8rem;
+  }
+
+  .suggestions-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .suggestion-card {
+    width: 90%;
+    height: auto;
+  }
+
+  .footer-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .surface-section {
+    padding: 0.8rem;
+  }
+  .text{
+    padding: 0.8rem;
+    text-align: center;
+  }
+
+  .suggestions-title {
+    font-size: 1.3rem;
+  }
+
+  .suggestion-card {
+    width: 100%;
+  }
+  button[pButton] {
+    min-width: 200px;
+    font-weight: bold;
+    margin: 5px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #0057a3;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+/*#endregion Responsive */
+/*#endregion Home Page */
 /*#endregion Home Page */

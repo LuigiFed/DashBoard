@@ -120,3 +120,32 @@
 }
 
 /* #endregion dot status */
+@media only screen and (max-width: 600px) {
+  .custom-table {
+    min-width: 100% !important; /* Override del min-width impostato inline */
+    font-size: 0.8em;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 4px !important;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  .carrier-logo {
+    width: 50px;
+  }
+
+  .edit-input {
+    font-size: 12px;
+    padding: 3px;
+  }
+
+  .delete-btn,
+  .edit-btn,
+  .save-btn {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+}
