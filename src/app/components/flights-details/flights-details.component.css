@@ -67,7 +67,7 @@ box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
   .container {
     width: 100%;
     overflow-x: hidden;
-    padding: 0 15px;
+    padding: 0 3px;
     box-sizing: border-box;
     border: none;
   }
@@ -84,8 +84,8 @@ box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 
 
   .container p-card img {
-    width: 50% !important;
-    font-size: 50px;
+    width: 40% !important;
+    font-size: 40px;
     height: auto;
   }
 
@@ -93,8 +93,7 @@ box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 
   .info-card{
    border: none;
-   padding: 20px;
-   font-size: 0.9em;
+   font-size: 0.8em;
    border: none;
   }
 }
