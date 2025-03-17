@@ -43,6 +43,7 @@ export class FlightsComponent {
           if (res.result.elements) {
             console.log("Elementi dei voli:", res.result.elements);
             this.voli = res.result.elements;
+
             this.voliFiltrati = this.voli;
 
           } else {
