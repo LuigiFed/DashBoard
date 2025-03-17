@@ -58,12 +58,15 @@ box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
   padding: 0;
   border: none;
 }
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
 
 
 @media only screen and (max-width: 600px) {
-  html, body {
-    overflow-x: hidden;
-  }
+
   .container {
     width: 100%;
     overflow-x: hidden;
@@ -84,10 +87,11 @@ box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 
 
   .container p-card img {
-    width: 40% !important;
+    width: 100% !important;
     font-size: 40px;
     height: auto;
-  }
+    max-width: 40%;
+    }
 
 
 
