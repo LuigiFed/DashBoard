@@ -96,4 +96,9 @@ box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
    font-size: 0.8em;
    border: none;
   }
+
+  .btn-whatsapp{
+    margin-left: 160px;
+  }
+
 }
