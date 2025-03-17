@@ -36,14 +36,13 @@ export class FlightsComponent {
 
     ngOnInit() {
       let flight = new Flight();
-      this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet/').subscribe((res: any) => {
+      this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet').subscribe((res: any) => {
 
         if (res && res.result && res.result.elements) {
           console.log(res.result.elements);
           if (res.result.elements) {
             console.log("Elementi dei voli:", res.result.elements);
             this.voli = res.result.elements;
-
             this.voliFiltrati = this.voli;
 
           } else {
@@ -131,7 +130,7 @@ export class FlightsComponent {
                 if (volo && volo.numeroVolo) {
               let flight = new Flight();
               flight.numeroVolo= volo.numeroVolo;
-                  this.requestor.sendSync([flight], 'delete', 'https://flightservlet-latest.onrender.com/flightservlet/').subscribe({
+                  this.requestor.sendSync([flight], 'delete', 'https://flightservlet-latest.onrender.com/flightservlet').subscribe({
                     next: (data) => {
                       console.log('Volo eliminato con successo', data);
 
@@ -192,7 +191,7 @@ export class FlightsComponent {
 
             console.log('Volo da aggiornare:', JSON.stringify(updFlight, null, 2));
 
-            this.requestor.sendSync([updFlight], 'update', 'https://flightservlet-latest.onrender.com/flightservlet/')
+            this.requestor.sendSync([updFlight], 'update', 'https://flightservlet-latest.onrender.com/flightservlet')
                 .subscribe(
                     (res: any) => {
                         console.log('Risposta dal server:', res);

@@ -226,7 +226,7 @@ addVolo(formData: any, event: Event, form: NgForm) {
 
     console.log(nuovoVolo);
 
-    this.requestor.sendSync([nuovoVolo], 'insert', 'http://localhost:8080/flightservlet').subscribe(
+    this.requestor.sendSync([nuovoVolo], 'insert', 'https://flightservlet-latest.onrender.com/flightservlet').subscribe(
       (response) => {
         console.log('Dati dei voli salvati con successo:', response);
         this.isSubmitting = false;
