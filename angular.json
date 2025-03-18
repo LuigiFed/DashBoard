@@ -94,12 +94,12 @@
                 ],
             "styles": [
               "src/styles.css",
-              "node_modules/primeng/resources/themes/aura/theme.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/leaflet.markercluster/dist/MarkerCluster.css",
               "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/angular-dark-mode/angular-dark-mode.js"]
           }
         }
       }

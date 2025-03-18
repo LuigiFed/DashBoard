@@ -46,7 +46,7 @@ export class FlightsDetailsComponent implements OnInit {
 
 
     let flight = new Flight();
-    this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet/')
+    this.requestor.sendSync([flight], 'search', 'http://localhost:8080/flightservlet/')
       .subscribe((res: any) => {
         this.dettagliVolo = res.result.elements;
         this.voli = Object.values(res.result.elements);
@@ -58,6 +58,7 @@ export class FlightsDetailsComponent implements OnInit {
       });
   });
   }
+
 
     // whatsAppLink(phoneNumber: string, flightNumber: string) {
   //   phoneNumber = "+1 (555) 049-0217";
