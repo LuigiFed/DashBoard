@@ -59,7 +59,6 @@ export class FlightsDetailsComponent implements OnInit {
   });
   }
 
-
     // whatsAppLink(phoneNumber: string, flightNumber: string) {
   //   phoneNumber = "+1 (555) 049-0217";
   //   const today = new Date();

@@ -34,7 +34,7 @@
       </tr>
   </ng-template>
   <ng-template #body let-volo>
-    <tr class="custom-row" (dblclick)="goToFlightDetails(volo.numeroVolo)">
+    <tr class="custom-row" (click)="goToFlightDetails(volo.numeroVolo)">
       <td *ngIf="!volo.isEditing">{{ volo.numeroVolo }}</td>
       <td *ngIf="volo.isEditing">
         <input [(ngModel)]="volo.numeroVolo" class="edit-input" (click)="$event.stopPropagation()" />
@@ -81,11 +81,6 @@
       </td>
     </tr>
   </ng-template>
-
-
-
-
-
 
 </p-table>
 
