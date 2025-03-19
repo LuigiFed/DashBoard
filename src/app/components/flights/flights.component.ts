@@ -33,7 +33,7 @@ export class FlightsComponent {
 
 
   constructor(private firebase : HttpFlightsService, private router : Router,private requestor: Requestor) { }
-  
+
     ngOnInit() {
       let flight = new Flight();
       this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet').subscribe((res: any) => {
@@ -183,6 +183,7 @@ export class FlightsComponent {
             updFlight.checkIn = volo.checkIn;
             updFlight.gate = volo.gate;
             updFlight.status = volo.status;
+            updFlight.dataVolo = volo.dataVolo;
 
 
             updFlight['class'] = 'it.swdes.test.models.Flight';

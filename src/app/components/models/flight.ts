@@ -20,6 +20,7 @@ logo!:string;
 partenza!:string;
 status!:string;
 gate!:string;
+dataVolo!:string;
 
 
   constructor() {
