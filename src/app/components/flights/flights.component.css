@@ -2,8 +2,8 @@
 
 
 .custom-table {
-  border: 2px solid #007bff;
   border-radius: 8px;
+  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
@@ -11,6 +11,7 @@
 
 .custom-header {
   background-color: #007bfffc;
+  padding:10px;
   color: white;
   font-weight: bold;
   text-align: left;
@@ -18,7 +19,8 @@
 }
 
 .custom-row {
-  background-color: #f1f1f1;
+  background-color: #2e79ca31;
+  padding: 10px;
 }
 
 .custom-row:hover {
@@ -27,15 +29,16 @@
 }
 
 .carrier-logo {
-  width: 80px;
+  width: 100px;
 }
 
 .edit-input {
   width: 100%;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc61;
   border-radius: 4px;
   font-size: 14px;
+  border: 2px solid;
 }
 .edit-input:focus {
   border-color: #007bff;
@@ -95,7 +98,8 @@
 .status-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  justify-content: center;
 }
 
 .status-dot-red,
@@ -125,44 +129,119 @@
 /* #endregion dot status */
 
 
-@media (max-width: 370px) {
+
+
+
+@media (max-width: 450px) {
+
   .custom-table {
-    font-size: 10px;
-    color: black;
-    background-color: yellow;
-  }
-
-
-  .custom-header, .custom-row {
-    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
+    padding: 0;
+    margin: 2px;
   }
 
   .custom-header {
-    font-size: 10px;
+    display: none;
+  }
+
+  .custom-row {
+    background-color: #2e79ca31;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    margin: 2px;
+  }
+  .carrier-logo {
+    width: 300px;
+    padding: 30px;
+    height: 100px;
+  }
+
+  .status-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+
+
+  td {
+    display: block;
+    margin-top : 7px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  td strong {
+    color: #007bff;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    margin-top: 2px;
+    padding: 3px;
   }
 
   .edit-input {
-    width: 40%;
-    padding: 8px;
+    width: 90%;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 14px;
+    text-align: center;
+  }
+
+  .edit-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    background-color: #fff;
   }
 
   .delete-btn, .edit-btn, .save-btn {
-    width: 100%;
-    padding: 10px;
+    width: 50%;
+    margin-top: 5x;
+    padding: 7px;
     font-size: 14px;
-    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
-
-  .custom-row {
-    padding: 8px;
+  .delete-btn {
+    background-color: red;
   }
 
+  .edit-btn {
+    background-color: #ffb300;
+    margin-bottom: 10px;
+  }
 
-  .p-datatable-wrapper {
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
+  .save-btn {
+    background-color: #007bff;
   }
 }
+
+@media (min-width: 451px) {
+
+  td {
+    display: table-cell;
+
+    width: auto;
+  }
+
+  .custom-row {
+    display: table-row;
+  }
+
+  td strong {
+    display: none;
+  }
+
+  .custom-header {
+    display: table-cell;
+  }
+}
+
+
+

@@ -16,47 +16,61 @@
   </ng-template>
 </p-toolbar>
 
-<p-table [value]="voliFiltrati" [resizableColumns]="true" columnResizeMode="expand"  responsiveLayout="stack"
-  styleClass="custom-table" [tableStyle]="{'min-width': '60rem', 'background-color': '#f8f9fa'}">
-
-  <ng-template #header>
-      <tr>
-
-          <th pResizableColumn class="custom-header">Flight Number</th>
-          <th pResizableColumn class="custom-header">Carrier</th>
-          <th pResizableColumn class="custom-header">Destination</th>
-          <th pResizableColumn class="custom-header">Check-in</th>
-          <th pResizableColumn class="custom-header">Gate</th>
-          <th pResizableColumn class="custom-header">Status</th>
-          <th class="custom-header"></th>
-          <th class="custom-header"></th>
-
-
-      </tr>
-  </ng-template>
-  <ng-template #body let-volo>
-    <tr class="custom-row" (click)="goToFlightDetails(volo.numeroVolo)">
-      <td *ngIf="!volo.isEditing">{{ volo.numeroVolo }}</td>
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th class="custom-header">Flight Number</th>
+      <th class="custom-header">Carrier</th>
+      <th class="custom-header">Destination</th>
+      <th class="custom-header">Check-in</th>
+      <th class="custom-header">Gate</th>
+      <th class="custom-header">Status</th>
+      <th class="custom-header"></th>
+      <th class="custom-header"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let volo of voliFiltrati" class="custom-row" (click)="goToFlightDetails(volo.numeroVolo)">
+      <td *ngIf="!volo.isEditing">
+        <strong>Volo:</strong> {{ volo.numeroVolo }}
+      </td>
       <td *ngIf="volo.isEditing">
+        <strong>Volo:</strong>
         <input [(ngModel)]="volo.numeroVolo" class="edit-input" (click)="$event.stopPropagation()" />
       </td>
+
       <td *ngIf="volo.logo">
         <img [src]="volo.logo" alt="Carrier Logo" class="carrier-logo" />
       </td>
-      <td *ngIf="!volo.isEditing">{{ volo.destinazione }}</td>
+
+      <td *ngIf="!volo.isEditing">
+        <strong>Destination:</strong> {{ volo.destinazione }}
+      </td>
       <td *ngIf="volo.isEditing">
+        <strong>Destination:</strong>
         <input [(ngModel)]="volo.destinazione" class="edit-input" (click)="$event.stopPropagation()" />
       </td>
-      <td *ngIf="!volo.isEditing">{{ volo.checkIn }}</td>
+
+      <td *ngIf="!volo.isEditing">
+        <strong>Check-in:</strong> {{ volo.checkIn }}
+      </td>
       <td *ngIf="volo.isEditing">
+        <strong>Check-in:</strong>
         <input [(ngModel)]="volo.checkIn" class="edit-input" (click)="$event.stopPropagation()" />
       </td>
-      <td *ngIf="!volo.isEditing">{{ volo.gate }}</td>
+
+      <td *ngIf="!volo.isEditing">
+        <strong>Gate:</strong> {{ volo.gate }}
+      </td>
       <td *ngIf="volo.isEditing">
+        <strong>Gate:</strong>
         <input [(ngModel)]="volo.gate" class="edit-input" (click)="$event.stopPropagation()" />
       </td>
+
       <td *ngIf="!volo.isEditing">
+
         <div class="status-container">
+          <strong>Status:</strong>
           {{ volo.status }}
           <span [ngClass]="{
             'status-dot-red': volo.status === 'Gate Closing',
@@ -65,6 +79,7 @@
         </div>
       </td>
       <td *ngIf="volo.isEditing">
+        <strong>Status:</strong>
         <select [(ngModel)]="volo.status" class="edit-input" (click)="$event.stopPropagation()">
           <option value="Gate Closing">Gate Closing</option>
           <option value="Boarding">Boarding</option>
@@ -73,16 +88,18 @@
           <option value="Cancelled">Cancelled</option>
         </select>
       </td>
+
       <td>
         <button class="delete-btn" (click)="delete(volo); $event.stopPropagation()">Delete</button>
       </td>
+
       <td>
         <button class="edit-btn" *ngIf="!volo.isEditing" (click)="edit(volo); $event.stopPropagation()">Edit</button>
         <button class="save-btn" *ngIf="volo.isEditing" (click)="save(volo); $event.stopPropagation()">Save</button>
       </td>
     </tr>
-  </ng-template>
+  </tbody>
+</table>
 
-</p-table>
 
 
