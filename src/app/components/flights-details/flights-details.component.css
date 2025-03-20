@@ -70,9 +70,19 @@ html, body {
   .container {
     width: 100%;
     overflow-x: hidden;
-    padding: 40px;
+    padding: 5px;
     box-sizing: border-box;
     border: none;
+
+  }
+
+  .flight-card{
+    width: 100%;
+    margin: 0 auto;
+    font-size: 0.7em;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .container p-card {
