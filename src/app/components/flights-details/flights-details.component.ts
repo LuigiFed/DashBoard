@@ -89,7 +89,7 @@ export class FlightsDetailsComponent implements OnInit {
 
   whatsAppLink(phoneNumber: string, flightNumber: string) {
     phoneNumber = "+1 (555) 049-0217"
-    const Today = this.voloSelezionato.dataVolo;
+    const Today = new Date(this.voloSelezionato.dataVolo);
     const flightDate = Today.toISOString().split('T')[0];
 
 
