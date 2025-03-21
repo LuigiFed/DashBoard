@@ -19,8 +19,8 @@
 <table class="custom-table">
   <thead>
     <tr>
-      <th class="custom-header">Flight Number</th>
       <th class="custom-header">Carrier</th>
+      <th class="custom-header">Flight Number</th>
       <th class="custom-header">Destination</th>
       <th class="custom-header">Check-in</th>
       <th class="custom-header">Gate</th>
@@ -31,16 +31,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let volo of voliFiltrati" class="custom-row" (click)="goToFlightDetails(volo.id)">
-      <td *ngIf="!volo.isEditing">
-        <strong>Volo:</strong> {{ volo.id }}
-      </td>
+
       <td *ngIf="volo.isEditing">
         <strong>Volo:</strong>
         <input [(ngModel)]="volo.numeroVolo" class="edit-input" (click)="$event.stopPropagation()" />
       </td>
 
+
       <td *ngIf="volo.logo">
         <img [src]="volo.logo" alt="Carrier Logo" class="carrier-logo" />
+      </td>
+      <td *ngIf="!volo.isEditing">
+        <strong>Volo:</strong> {{ volo.numeroVolo }}
       </td>
 
       <td *ngIf="!volo.isEditing">
