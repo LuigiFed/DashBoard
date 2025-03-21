@@ -60,6 +60,7 @@
 .delete-btn:hover {
   background-color: darkred;
   transform: scale(1.05);
+
 }
 
 .edit-btn {
