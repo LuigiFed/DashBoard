@@ -21,6 +21,7 @@ export class FlightsDetailsComponent implements OnInit {
   voli: any[] = [];
   voloSelezionato: any = null;
   dettagliVolo: any;
+  id: number = 0;
 
   constructor(private route: ActivatedRoute, private firebase: HttpFlightsService,private requestor: Requestor) {}
 
@@ -41,8 +42,8 @@ export class FlightsDetailsComponent implements OnInit {
 
 
   this.route.queryParams.subscribe(params => {
-    this.numeroVolo = params['numeroVolo'] || '';
-    console.log('Numero volo dai query params:', this.numeroVolo);
+    this.id = params['id'] || '';
+    console.log('Numero volo dai query params:', this.id);
 
 
     let flight = new Flight();
@@ -51,7 +52,7 @@ export class FlightsDetailsComponent implements OnInit {
         this.dettagliVolo = res.result.elements;
         this.voli = Object.values(res.result.elements);
         this.voloSelezionato = this.voli.find(volo =>
-          String(volo.numeroVolo) === String(this.numeroVolo)
+          String(volo.id) === String(this.id)
         );
       }, err => {
         console.log("Errore durante la richiesta:", err);

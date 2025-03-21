@@ -30,9 +30,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let volo of voliFiltrati" class="custom-row" (click)="goToFlightDetails(volo.numeroVolo)">
+    <tr *ngFor="let volo of voliFiltrati" class="custom-row" (click)="goToFlightDetails(volo.id)">
       <td *ngIf="!volo.isEditing">
-        <strong>Volo:</strong> {{ volo.numeroVolo }}
+        <strong>Volo:</strong> {{ volo.id }}
       </td>
       <td *ngIf="volo.isEditing">
         <strong>Volo:</strong>

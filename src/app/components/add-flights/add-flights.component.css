@@ -94,6 +94,6 @@ button[type="submit"]:focus {
   }
 
   input {
-    width: 80%; /* Più largo su schermi piccoli */
+    width: 100%; /* Più largo su schermi piccoli */
   }
 }

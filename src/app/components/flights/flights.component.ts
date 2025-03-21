@@ -102,14 +102,14 @@ export class FlightsComponent {
           }
 
           //funzione per andare alla pagina dei dettagli del volo
-          goToFlightDetails(numeroVolo: string) {
-            console.log('Numero volo passato:', numeroVolo);
-            if (numeroVolo && numeroVolo.trim() !== '') {
+          goToFlightDetails(id: string) {
+            console.log('Numero volo passato:', id);
+            if (id) {
               this.router.navigate(['/dashboard/flightsDetails'], {
-                queryParams: { numeroVolo: numeroVolo }
+                queryParams: { id : id }
               });
             } else {
-              console.error('Numero volo non valido:', numeroVolo);
+              console.error('Numero volo non valido:', id);
             }
           }
 
