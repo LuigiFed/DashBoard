@@ -7,9 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HttpFlightsService } from '../../services/http-flights.service';
 import { Flight } from '../models/flight';
 import { Requestor } from '../../services/requestor';
-import { getToken } from 'firebase/messaging';
-import { environment } from '../../../environments/environment';
-import { Messaging } from '@angular/fire/messaging';
+import { PushNotificationsService } from '../../services/push-notifications.service';
 
 
 @Component({
@@ -26,7 +24,7 @@ export class FlightsDetailsComponent implements OnInit {
   dettagliVolo: any;
   id: number = 0;
 
-  constructor(private route: ActivatedRoute, private firebase: HttpFlightsService,private requestor: Requestor) {}
+  constructor(private route: ActivatedRoute, private firebase: HttpFlightsService,private requestor: Requestor,private pushNotificationsService: PushNotificationsService) {}
 
   ngOnInit(): void {
   //   this.firebase.getFlights('http://localhost:8080/flightservlet').subscribe((data: any) => {
@@ -107,35 +105,12 @@ export class FlightsDetailsComponent implements OnInit {
     window.open(urlUpdate, '_blank');
   }
 
-  private messaging = inject(Messaging);
-async enablePushNotifications() {
-    try {
-      console.log('Registrazione del Service Worker...');
 
-      const registration = await navigator.serviceWorker.register('/assets/firebase-messaging-sw.js');
-      console.log('Service Worker registrato con successo!', registration);
 
-      console.log('Richiesta permesso per notifiche...');
-      const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        console.log('Permesso concesso! Recupero token...');
-        const token = await getToken(this.messaging, {
-          vapidKey: environment.firebaseConfig.vapidKey,
-          serviceWorkerRegistration: registration
-        });
 
-        if (token) {
-          console.log('Token FCM:', token);
-          alert('Notifiche attivate con successo!');
-        } else {
-          alert('Nessun token disponibile.');
-        }
-      } else {
-        alert('Permesso negato.');
-      }
-    } catch (err) {
-      console.error('Errore nel recupero del token:', err);
-    }
+
+  enablePushNotifications(): void {
+    this.pushNotificationsService.setupServiceWorker();
   }
 }
 

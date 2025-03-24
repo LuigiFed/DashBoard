@@ -18,42 +18,9 @@ export class AppComponent {
 
 
   ngOnInit(): void {
-    this.setupServiceWorker();
+
   }
 
-  private setupServiceWorker(): void {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/firebase-messaging-sw.js', { type: 'module' })
-        .then((registration) => {
-          console.log('Service Worker registrato:', registration);
-          this.requestPermission();
-        })
-        .catch((err) => console.log('Service Worker non registrato:', err));
-    }
-  }
 
-  requestPermission() {
-    console.log('Chiedendo il permesso per le notifiche...');
-    Notification.requestPermission().then((permission) => {
-      if (permission === 'granted') {
-        console.log('Permesso concesso.');
-        getToken(this.messaging, {
-          vapidKey: environment.firebaseConfig.vapidKey,
-        })
-          .then((currentToken: string) => {
-            if (currentToken) {
-              console.log('Token FCM:', currentToken);
-            } else {
-              console.log('Nessun token trovato.');
-            }
-          })
-          .catch((err) => console.log('Errore nel recupero del token:', err));
-      }
-    });
-  }
+
 }
-
-
-
-
