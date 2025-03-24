@@ -11,6 +11,13 @@ import Aura from '@primeng/themes/aura';
 import { CommonModule } from '@angular/common';
 import { ServerModule } from '@angular/platform-server';
 
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+import { environment } from '../environments/environment';
+
+
+
+
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
@@ -18,6 +25,16 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideRouter(routes),
+
+
+    // Firebase config
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideMessaging(() => getMessaging()),
+
+
+
     //  PrimeNG and Aura providers...
     provideAnimationsAsync(),
     providePrimeNG({
@@ -26,7 +43,7 @@ export const appConfig: ApplicationConfig = {
         options: {
           darkModeSelector: 'dark-mode',}
       },
-        
+
      }),
     CommonModule,
     ServerModule
