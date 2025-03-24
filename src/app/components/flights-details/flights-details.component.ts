@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';  // Correzione per il modulo Button
@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { HttpFlightsService } from '../../services/http-flights.service';
 import { Flight } from '../models/flight';
 import { Requestor } from '../../services/requestor';
+import { getToken } from 'firebase/messaging';
+import { environment } from '../../../environments/environment';
+import { Messaging } from '@angular/fire/messaging';
 
 
 @Component({
@@ -104,5 +107,37 @@ export class FlightsDetailsComponent implements OnInit {
     window.open(urlUpdate, '_blank');
   }
 
+  private messaging = inject(Messaging);
+async enablePushNotifications() {
+    try {
+      console.log('Registrazione del Service Worker...');
 
+      const registration = await navigator.serviceWorker.register('/assets/firebase-messaging-sw.js');
+      console.log('Service Worker registrato con successo!', registration);
+
+      console.log('Richiesta permesso per notifiche...');
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        console.log('Permesso concesso! Recupero token...');
+        const token = await getToken(this.messaging, {
+          vapidKey: environment.firebaseConfig.vapidKey,
+          serviceWorkerRegistration: registration
+        });
+
+        if (token) {
+          console.log('Token FCM:', token);
+          alert('Notifiche attivate con successo!');
+        } else {
+          alert('Nessun token disponibile.');
+        }
+      } else {
+        alert('Permesso negato.');
+      }
+    } catch (err) {
+      console.error('Errore nel recupero del token:', err);
+    }
+  }
 }
+
+
+

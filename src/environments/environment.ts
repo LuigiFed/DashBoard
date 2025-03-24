@@ -8,6 +8,7 @@ export const environment = {
   storageBucket: "flights-3afb2.firebasestorage.app",
   messagingSenderId: "81663858175",
   appId: "1:81663858175:web:7c0e010166c23da35983ca",
-  measurementId: "G-DNVDPWTTXJ"
+  measurementId: "G-DNVDPWTTXJ",
+  vapidKey: "BKz_2Bcs44AWUGRKrAtYZTg9dz-XdzDg8iAYYKDun-IIsEIer4T0My0I80_dOuIMblKUkIe-n8KXpqlGMLD7KwU"
   },
 };
