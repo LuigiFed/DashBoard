@@ -24,7 +24,7 @@ export class FlightsDetailsComponent implements OnInit {
   dettagliVolo: any;
   id: number = 0;
 
-  constructor(private route: ActivatedRoute, private firebase: HttpFlightsService,private requestor: Requestor,private pushNotificationsService: PushNotificationsService) {}
+  constructor(private route: ActivatedRoute, private firebase: HttpFlightsService,private requestor: Requestor,private pushService: PushNotificationsService) {}
 
   ngOnInit(): void {
   //   this.firebase.getFlights('http://localhost:8080/flightservlet').subscribe((data: any) => {
@@ -40,7 +40,9 @@ export class FlightsDetailsComponent implements OnInit {
 
   //   });
   // }
-
+ /* setTimeout(() => {
+    this.pushService.setupServiceWorker();
+  }, 1000);*/
 
   this.route.queryParams.subscribe(params => {
     this.id = params['id'] || '';
@@ -110,7 +112,7 @@ export class FlightsDetailsComponent implements OnInit {
 
 
   enablePushNotifications(): void {
-    this.pushNotificationsService.setupServiceWorker();
+    this.pushService.setupServiceWorker();
   }
 }
 

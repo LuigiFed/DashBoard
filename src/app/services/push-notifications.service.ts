@@ -1,30 +1,49 @@
 import { inject, Injectable } from '@angular/core';
-import { Messaging } from '@angular/fire/messaging';
-import { getToken } from 'firebase/messaging';
+import { initializeApp } from '@angular/fire/app';
+import { getMessaging, getToken, onMessage } from '@angular/fire/messaging';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PushNotificationsService {
-  private messaging = inject(Messaging);
+  private messaging: any;//inject(Messaging);
 
   constructor() {}
 
   setupServiceWorker(): void {
-    if ('serviceWorker' in navigator) {
+    /*if ('serviceWorker' in navigator) {
+
       navigator.serviceWorker
-        .register('./firebase-messaging-sw.js', { scope: '/' })
+        .register('/firebase-messaging-sw.js', {
+          scope: '/'
+        })
         .then((registration) => {
-          console.log('Service Worker registrato con successo:', registration);
+          console.log('Dettagli registrazione:', {
+            scope: registration.scope,
+            scriptURL: registration.active?.scriptURL
+          });
           this.requestPermission(registration);
         })
-        .catch((err) => console.log('Errore nella registrazione del Service Worker:', err));
-    } else {
-      console.log('Service Worker non supportato nel tuo browser.');
-    }
-  }
+        .catch((err) => {
+          console.error('Errore di registrazione:', {
+            name: err.name,
+            message: err.message,
+            stack: err.stack
+          });
+        });
+    }*/
 
-  private requestPermission(registration: ServiceWorkerRegistration): void {
+        const app = initializeApp(environment.firebaseConfig);
+        this.messaging = getMessaging(app);
+        this.requestPermission();
+
+        onMessage(this.messaging, (payload) => {
+          alert(JSON.stringify(payload));
+          // ...
+        });
+  }
+ /* private requestPermission(registration: ServiceWorkerRegistration): void {
     console.log('Chiedendo il permesso per le notifiche...');
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
@@ -51,5 +70,29 @@ export class PushNotificationsService {
     }).catch((err) => {
       console.log('Errore nel recupero del token FCM:', err);
     });
-  }
+  }*/
+
+    requestPermission() {
+      console.log('Requesting permission...');
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+          getToken(this.messaging, {
+            vapidKey: environment.firebaseConfig.vapiKey,
+          })
+            .then((currentToken: string) => {
+              if (currentToken) {
+                console.log(currentToken);
+              } else {
+                console.log(
+                  'No registration token available. Request permission to generate one.'
+                );
+              }
+            })
+            .catch((err: any) => {
+              console.log(err);
+            });
+        }
+      });
+    }
 }

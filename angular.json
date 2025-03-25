@@ -51,7 +51,8 @@
                   "maximumError": "800kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
@@ -92,8 +93,6 @@
                   "src/assets",
                   "src/favicon.ico",
                   "src/firebase-messaging-sw.js"
-
-
                 ],
             "styles": [
               "src/styles.css",
