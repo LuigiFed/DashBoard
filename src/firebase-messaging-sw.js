@@ -1,4 +1,4 @@
-/*importScripts(
+importScripts(
   "https://www.gstatic.com/firebasejs/11.4.0/firebase-app-compat.js"
 );
 importScripts(
@@ -17,24 +17,24 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-const messaging = firebase.messaging();*/
-
-importScripts(
-  "https://www.gstatic.com/firebasejs/11.4.0/firebase-app-compat.js"
-);
-importScripts(
-  "https://www.gstatic.com/firebasejs/11.4.0/firebase-messaging-compat.js"
-);
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAxLoKmAErrDTWsgyIRzdVcEFENFXloja4",
-  authDomain: "angular-fcm-demo-f44d7.firebaseapp.com",
-  projectId: "angular-fcm-demo-f44d7",
-  storageBucket: "angular-fcm-demo-f44d7.firebasestorage.app",
-  messagingSenderId: "188297093909",
-  appId: "1:188297093909:web:945545a300a03f98de3f1c",
-  measurementId: "G-BCLH9793T5"
-};
-
-const app = firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
+
+// importScripts(
+//   "https://www.gstatic.com/firebasejs/11.4.0/firebase-app-compat.js"
+// );
+// importScripts(
+//   "https://www.gstatic.com/firebasejs/11.4.0/firebase-messaging-compat.js"
+// );
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAxLoKmAErrDTWsgyIRzdVcEFENFXloja4",
+//   authDomain: "angular-fcm-demo-f44d7.firebaseapp.com",
+//   projectId: "angular-fcm-demo-f44d7",
+//   storageBucket: "angular-fcm-demo-f44d7.firebasestorage.app",
+//   messagingSenderId: "188297093909",
+//   appId: "1:188297093909:web:945545a300a03f98de3f1c",
+//   measurementId: "G-BCLH9793T5"
+// };
+
+// const app = firebase.initializeApp(firebaseConfig);
+// const messaging = firebase.messaging();

@@ -78,11 +78,11 @@ export class PushNotificationsService {
         if (permission === 'granted') {
           console.log('Notification permission granted.');
           getToken(this.messaging, {
-            vapidKey: environment.firebaseConfig.vapiKey,
+            vapidKey: environment.firebaseConfig.vapidKey,
           })
             .then((currentToken: string) => {
               if (currentToken) {
-                console.log(currentToken);
+                // post subsciption(Flight, token)
               } else {
                 console.log(
                   'No registration token available. Request permission to generate one.'
