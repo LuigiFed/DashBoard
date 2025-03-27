@@ -8,6 +8,7 @@ import { HttpFlightsService } from '../../services/http-flights.service';
 import { Flight } from '../models/flight';
 import { Requestor } from '../../services/requestor';
 import { PushNotificationsService } from '../../services/push-notifications.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -27,22 +28,7 @@ export class FlightsDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private firebase: HttpFlightsService,private requestor: Requestor,private pushService: PushNotificationsService) {}
 
   ngOnInit(): void {
-  //   this.firebase.getFlights('http://localhost:8080/flightservlet').subscribe((data: any) => {
-  //     this.dettagliVolo = data;
-  //     this.voli = Object.values(data);  // Converto i dati in un array di voli
 
-  //     // Ottieni il numero del volo dalla route
-  //     this.numeroVolo = this.route.snapshot.paramMap.get('numeroVolo') || '';
-  //     console.log('Numero volo dalla route:', this.numeroVolo);
-
-  //     this.voloSelezionato = this.voli.find(volo => String(volo.NUMERO_VOLO) === String(this.numeroVolo));
-
-
-  //   });
-  // }
- /* setTimeout(() => {
-    this.pushService.setupServiceWorker();
-  }, 1000);*/
 
   this.route.queryParams.subscribe(params => {
     this.id = params['id'] || '';
@@ -64,32 +50,6 @@ export class FlightsDetailsComponent implements OnInit {
   }
 
 
-    // whatsAppLink(phoneNumber: string, flightNumber: string) {
-  //   phoneNumber = "+1 (555) 049-0217";
-  //   const today = new Date();
-  //   const flightDate = today.toISOString().split('T')[0];
-
-
-  //   const apiUrl = 'http://localhost:8080/flightservlet/webhook';
-
-  //   this.http.post(apiUrl, {
-  //     phoneNumber: phoneNumber,
-  //     flightNumber: flightNumber,
-  //     flightDate: flightDate
-  //   }).subscribe(
-  //     response => {
-  //       console.log('Sottoscrizione registrata con successo');
-
-  //       const message = `ISCRIZIONE NOTIFICHE: Vorrei ricevere aggiornamenti sul volo ${flightNumber} del ${flightDate}. #subscribe`;
-  //       const encodedMessage = encodeURIComponent(message);
-  //       const urlUpdate = `https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${encodedMessage}&type=phone_number&app_absent=0`;
-  //       window.open(urlUpdate, '_blank');
-  //     },
-  //     error => {
-  //       console.error('Errore nella registrazione della sottoscrizione', error);
-  //     }
-  //   );
-  // }
 
   whatsAppLink(phoneNumber: string, flightNumber: string) {
     phoneNumber = "+1 (555) 049-0217"
@@ -111,9 +71,50 @@ export class FlightsDetailsComponent implements OnInit {
 
 
 
-  enablePushNotifications(): void {
-    this.pushService.setupServiceWorker();
+  enablePushNotifications(flight: Flight): void {
+    Swal.fire({
+      text: `Voglio seguire il volo ${flight.numeroVolo} del ${flight.dataVolo}.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Conferma',
+      cancelButtonText: 'Annulla',
+      showLoaderOnConfirm: true,
+      position: 'top',
+      width: 300,
+      preConfirm: () => {
+        return this.pushService.setupServiceWorker(flight)
+          .then(token => {
+            if (!token) {
+              throw new Error("Token non disponibile");
+            }
+            return token;
+          })
+          .catch(err => {
+            Swal.fire({
+              title: 'Errore!',
+              text: 'Impossibile ottenere il token Firebase.',
+              icon: 'error',
+              position: 'top',
+              width: 300,
+            });
+            throw err;
+          });
+      }
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        const token = result.value;
+        console.log('Token ricevuto:', token);
+        this.pushService.sendSubscriptionToBackend(flight, token);
+        Swal.fire({
+          title: `Sottoscrizione al servizio di aggiornamento del volo ${flight.numeroVolo}!`,
+          icon: 'success',
+          position: 'top',
+          width: 300,
+        });
+      }
+    });
   }
+
 }
 
 

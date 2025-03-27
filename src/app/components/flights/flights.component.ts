@@ -60,18 +60,6 @@ export class FlightsComponent {
       });
 
 
-      /*this.firebase.postFlight('http://localhost:8080/flightservlet')
-
-      ).subscribe(
-        (data: any) => {
-          this.voli = Object.values(data);
-          this.voliFiltrati = this.voli;
-          console.log(this.voli);
-        },
-        (error) => {
-          console.error('Errore nel recuperare i dati dei voli:', error);
-        }
-      );*/
 
     }
 

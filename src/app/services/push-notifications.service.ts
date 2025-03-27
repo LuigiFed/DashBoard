@@ -2,77 +2,56 @@ import { inject, Injectable } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { getMessaging, getToken, onMessage } from '@angular/fire/messaging';
 import { environment } from '../../environments/environment';
+import { Flight } from '../components/models/flight';
+import { Requestor } from './requestor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PushNotificationsService {
-  private messaging: any;//inject(Messaging);
+  private messaging: any;
+  voli : any[] = [];
+  cercaVoli: string = '';
+  voliFiltrati: any[] = [];
 
-  constructor() {}
+  constructor(private requestor: Requestor) {}
 
-  setupServiceWorker(): void {
-    /*if ('serviceWorker' in navigator) {
+  setupServiceWorker(flight: Flight): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const app = initializeApp(environment.firebaseConfig);
+      this.messaging = getMessaging(app);
 
-      navigator.serviceWorker
-        .register('/firebase-messaging-sw.js', {
-          scope: '/'
-        })
-        .then((registration) => {
-          console.log('Dettagli registrazione:', {
-            scope: registration.scope,
-            scriptURL: registration.active?.scriptURL
-          });
-          this.requestPermission(registration);
-        })
-        .catch((err) => {
-          console.error('Errore di registrazione:', {
-            name: err.name,
-            message: err.message,
-            stack: err.stack
-          });
-        });
-    }*/
-
-        const app = initializeApp(environment.firebaseConfig);
-        this.messaging = getMessaging(app);
-        this.requestPermission();
-
-        onMessage(this.messaging, (payload) => {
-          alert(JSON.stringify(payload));
-          // ...
-        });
-  }
- /* private requestPermission(registration: ServiceWorkerRegistration): void {
-    console.log('Chiedendo il permesso per le notifiche...');
-    Notification.requestPermission().then((permission) => {
-      if (permission === 'granted') {
-        console.log('Permesso per le notifiche concesso!');
-        this.getToken(registration);
-      } else {
-        console.log('Permesso per le notifiche negato.');
-      }
-    }).catch((err) => {
-      console.log('Errore durante la richiesta del permesso per le notifiche:', err);
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+          getToken(this.messaging, { vapidKey: environment.firebaseConfig.vapidKey })
+            .then((currentToken: string) => {
+              if (currentToken) {
+                console.log('Token FCM:', currentToken);
+                resolve(currentToken);
+              } else {
+                reject('Nessun token disponibile');
+              }
+            })
+            .catch((err) => {
+              console.error('Errore generazione token:', err);
+              reject(err);
+            });
+        } else {
+          reject('Permesso negato');
+        }
+      });
     });
   }
 
-  private getToken(registration: ServiceWorkerRegistration): void {
-    getToken(this.messaging, {
-      vapidKey: "BKz_2Bcs44AWUGRKrAtYZTg9dz-XdzDg8iAYYKDun-IIsEIer4T0My0I80_dOuIMblKUkIe-n8KXpqlGMLD7KwU",
-      serviceWorkerRegistration: registration
-    }).then((currentToken: string) => {
-      if (currentToken) {
-        console.log('Token FCM ricevuto:', currentToken);
-      } else {
-        console.log('Nessun token trovato.');
-      }
-    }).catch((err) => {
-      console.log('Errore nel recupero del token FCM:', err);
-    });
-  }*/
+  private showNotification(title: string, body: string): void {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification(title, { body });
+    }
+  }
 
-    requestPermission() {
+    requestPermission(flight : Flight) {
+
       console.log('Requesting permission...');
       Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
@@ -82,17 +61,66 @@ export class PushNotificationsService {
           })
             .then((currentToken: string) => {
               if (currentToken) {
-                // post subsciption(Flight, token)
+                console.log('Token FCM:', currentToken);
+
+                this.sendSubscriptionToBackend(flight,currentToken);
               } else {
-                console.log(
-                  'No registration token available. Request permission to generate one.'
-                );
+                console.log('Nessun token disponibile');
               }
             })
-            .catch((err: any) => {
-              console.log(err);
+            .catch((err) => {
+              console.error('Errore generazione token:', err);
             });
         }
       });
     }
-}
+
+    sendSubscriptionToBackend(flight : Flight,token: string) {
+
+      console.log('Flight ricevuto (tipo):', typeof flight);
+      console.log('Flight ricevuto (valore):', JSON.stringify(flight, null, 2));
+
+      const token_firebase = token;
+      if (!flight) {
+          console.error('Flight è undefined o null');
+          alert('Errore: Nessun volo selezionato');
+          return;
+      }
+
+
+      const subscriptionData = {
+        action: 'subscribe',
+        token_firebase,
+        flight,
+        enabled: true,
+        querybyexample: false,
+        class: 'it.swdes.test.models.Flight',
+
+      };
+
+      console.log('Dati inviati al backend:', JSON.stringify(subscriptionData, null, 2));
+
+      this.requestor.sendSync(
+        [subscriptionData],
+        'processSubscription',
+        'http://localhost:8080/flightservlet'
+      ).subscribe({
+        next: (res: any) => {
+          if (res?.result?.acronym !== 'OK') {
+            console.error('Errore backend:', res);
+            alert(res?.result?.descr || 'Errore durante la sottoscrizione');
+        }
+          else {
+            console.error('Errore backend:', res?.result?.descr);
+            alert(res?.result?.descr || 'Errore durante la sottoscrizione');
+          }
+        },
+        error: (err) => {
+          console.error('Errore completo:', err);
+          console.error('Stato:', err.status);
+          console.error('Messaggio:', err.message);
+          console.error('Dettagli:', err.error);
+          alert('Errore durante la sottoscrizione');
+        }
+      });
+    }}
