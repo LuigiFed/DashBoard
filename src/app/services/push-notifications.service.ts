@@ -16,6 +16,7 @@ export class PushNotificationsService {
 
   constructor(private requestor: Requestor) {}
 
+
   setupServiceWorker(flight: Flight): Promise<string> {
     return new Promise((resolve, reject) => {
       const app = initializeApp(environment.firebaseConfig);
@@ -49,6 +50,8 @@ export class PushNotificationsService {
       new Notification(title, { body });
     }
   }
+
+
 
     requestPermission(flight : Flight) {
 
@@ -100,20 +103,21 @@ export class PushNotificationsService {
 
       console.log('Dati inviati al backend:', JSON.stringify(subscriptionData, null, 2));*/
       flight.token = token_firebase;
+      flight['class'] = 'it.swdes.test.models.Flight';
       this.requestor.sendSync(
         [flight],
         'processSubscription',
         'https://flightservlet-latest.onrender.com/flightservlet'
-        // 'http://localhost:8080/flightservlet'
+        //'http://localhost:8080/flightservlet'
       ).subscribe({
         next: (res: any) => {
           if (res?.result?.acronym !== 'OK') {
-            console.error('Errore backend:', res);
-            alert(res?.result?.descr || 'Errore durante la sottoscrizione');
+            console.log('Iscrizione avvenuta con successo:', res);
+
         }
           else {
-            console.error('Errore backend:', res?.result?.descr);
-            alert(res?.result?.descr || 'Errore durante la sottoscrizione');
+            console.log('Errore backend:', res?.result?.descr);
+
           }
         },
         error: (err) => {
@@ -121,7 +125,7 @@ export class PushNotificationsService {
           console.error('Stato:', err.status);
           console.error('Messaggio:', err.message);
           console.error('Dettagli:', err.error);
-          alert('Errore durante la sottoscrizione');
+
         }
       });
     }}

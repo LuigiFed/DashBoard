@@ -9,6 +9,9 @@ import { Flight } from '../models/flight';
 import { Requestor } from '../../services/requestor';
 import { PushNotificationsService } from '../../services/push-notifications.service';
 import Swal from 'sweetalert2';
+import { initializeApp } from '@angular/fire/app';
+import { getMessaging, onMessage } from '@angular/fire/messaging';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -24,33 +27,51 @@ export class FlightsDetailsComponent implements OnInit {
   voloSelezionato: any = null;
   dettagliVolo: any;
   id: number = 0;
+  private messaging: any;
+
 
   constructor(private route: ActivatedRoute, private firebase: HttpFlightsService,private requestor: Requestor,private pushService: PushNotificationsService) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'] || '';
+      console.log('Numero volo dai query params:', this.id);
+
+      let flight = new Flight();
+      flight.id = this.id;
+      this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet/')
+        .subscribe((res: any) => {
+          this.dettagliVolo = res.result.elements;
+          this.voli = Object.values(res.result.elements);
+          this.voloSelezionato = this.voli.find(volo =>
+            String(volo.id) === String(this.id)
+          );
+        }, err => {
+          console.log("Errore durante la richiesta:", err);
+        });
+    });
 
 
-  this.route.queryParams.subscribe(params => {
-    this.id = params['id'] || '';
-    console.log('Numero volo dai query params:', this.id);
+    const app = initializeApp(environment.firebaseConfig);
 
+    this.messaging = getMessaging(app);
 
-    let flight = new Flight();
-    this.requestor.sendSync([flight], 'search', 'https://flightservlet-latest.onrender.com/flightservlet/')
-      .subscribe((res: any) => {
-        this.dettagliVolo = res.result.elements;
-        this.voli = Object.values(res.result.elements);
-        this.voloSelezionato = this.voli.find(volo =>
-          String(volo.id) === String(this.id)
-        );
-      }, err => {
-        console.log("Errore durante la richiesta:", err);
-      });
-  });
+    this.pushService.requestPermission(new Flight());
+
+    onMessage(this.messaging, (payload) => {
+      console.log('Received foreground message:', payload);
+
+      if (Notification.permission === 'granted') {
+        const notificationTitle = payload.notification?.title || 'New Notification';
+        const notificationOptions = {
+          body: payload.notification?.body || 'You have a new message',
+          icon: payload.notification?.icon || '/path/to/default/icon.png'
+        };
+
+        new Notification(notificationTitle, notificationOptions);
+      }
+    });
   }
-
-
-
   whatsAppLink(phoneNumber: string, flightNumber: string) {
     phoneNumber = "+1 (555) 049-0217"
     const Today = new Date(this.voloSelezionato.dataVolo);
