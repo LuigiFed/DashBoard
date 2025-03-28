@@ -103,8 +103,8 @@ export class PushNotificationsService {
       this.requestor.sendSync(
         [flight],
         'processSubscription',
-        //'https://dashboard-fstq.onrender.com/dashboard/home'
-        'http://localhost:8080/flightservlet'
+        'https://dashboard-fstq.onrender.com/dashboard/home'
+        // 'http://localhost:8080/flightservlet'
       ).subscribe({
         next: (res: any) => {
           if (res?.result?.acronym !== 'OK') {
