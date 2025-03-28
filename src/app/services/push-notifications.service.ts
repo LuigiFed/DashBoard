@@ -88,7 +88,7 @@ export class PushNotificationsService {
       }
 
 
-      const subscriptionData = {
+      /*const subscriptionData = {
         action: 'subscribe',
         token_firebase,
         flight,
@@ -98,10 +98,10 @@ export class PushNotificationsService {
 
       };
 
-      console.log('Dati inviati al backend:', JSON.stringify(subscriptionData, null, 2));
-
+      console.log('Dati inviati al backend:', JSON.stringify(subscriptionData, null, 2));*/
+      flight.token = token_firebase;
       this.requestor.sendSync(
-        [subscriptionData],
+        [flight],
         'processSubscription',
         'http://localhost:8080/flightservlet'
       ).subscribe({

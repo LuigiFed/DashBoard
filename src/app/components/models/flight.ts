@@ -21,6 +21,7 @@ partenza!:string;
 status!:string;
 gate!:string;
 dataVolo!:Date;
+token!:string;
 
 
   constructor() {
