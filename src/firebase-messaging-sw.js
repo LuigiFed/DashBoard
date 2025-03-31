@@ -66,7 +66,9 @@ self.addEventListener('notificationclick', function(event) {
   } else if (event.action === 'close') {
     console.log('Notifica chiusa dall\'utente.');
   } else {
-    clients.openWindow('/flights');
+    //clients.openWindow('/flights');
+    const url = `/dashboard/flightsDetails?id=${flightId}`;
+    window.open(url, '_self');
   }
 });
 

@@ -45,6 +45,10 @@ export class FlightsComponent {
             this.voli = res.result.elements;
             this.voliFiltrati = this.voli;
 
+            this.voli.sort((a, b) => {
+              return a.numeroVolo.localeCompare(b.numeroVolo);
+            });
+
           } else {
             console.error('Errore: mancanti gli elementi nella risposta', res);
           }
@@ -112,7 +116,9 @@ export class FlightsComponent {
               icon: 'warning',
               showCancelButton: true,
               confirmButtonText: 'Conferma',
-              cancelButtonText: 'Annulla'
+              cancelButtonText: 'Annulla',
+              position: 'top',
+              width: 300,
             }).then((res) => {
               if (res.isConfirmed) {
                 if (volo && volo.numeroVolo) {
@@ -126,7 +132,12 @@ export class FlightsComponent {
                       this.voli = this.voli.filter(item => item.numeroVolo !== volo.numeroVolo);
                       this.voliFiltrati = this.voliFiltrati.filter(item => item.numeroVolo !== volo.numeroVolo);
 
-                      Swal.fire('Successo', 'Volo eliminato con successo!', 'success');
+                      Swal.fire({
+                        title: `Il volo ${flight.numeroVolo} è stato eliminato con successo!`,
+                        icon: 'success',
+                        position: 'top',
+                        width: 300,
+                      });
                     },
                     error: (error) => {
                       console.error('Errore durante l\'eliminazione del volo', error);
