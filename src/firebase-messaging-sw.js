@@ -48,28 +48,47 @@ self.addEventListener('notificationclick', function(event) {
   event.notification.close();
 
   const flightId = event.notification.data.flightId;
+  let url = `/dashboard/flightsDetails?id=${flightId}`;
 
 
-  if (event.action === 'view' && flightId) {
-    const url = `/dashboard/flightsDetails?id=${flightId}`;
-    clients.openWindow(url).catch(() => {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
+  if (isIOS) {
 
-      self.clients.matchAll().then((clients) => {
-        if (clients && clients.length) {
-          clients[0].navigate(url);
-        } else {
-          window.open(url, '_blank');
+    event.waitUntil(
+      self.clients.matchAll({type: 'window'}).then(windowClients => {
+        for (let i = 0; i < windowClients.length; i++) {
+          const client = windowClients[i];
+
+          if (client.url.includes('/dashboard') && 'focus' in client) {
+            return client.focus();
+          }
         }
-      });
-    });
-  } else if (event.action === 'close') {
-    console.log('Notifica chiusa dall\'utente.');
+
+
+        return self.clients.openWindow(url);
+      })
+    );
   } else {
-    //clients.openWindow('/flights');
-    const url = `/dashboard/flightsDetails?id=${flightId}`;
-    window.open(url, '_self');
+
+    if (event.action === 'view' && flightId) {
+      event.waitUntil(
+        clients.openWindow(url).catch(() => {
+          self.clients.matchAll().then((clients) => {
+            if (clients && clients.length) {
+              clients[0].navigate(url);
+            } else {
+              window.open(url, '_blank');
+            }
+          });
+        })
+      );
+    } else if (event.action === 'close') {
+      console.log('Notifica chiusa dall\'utente.');
+    } else {
+      event.waitUntil(clients.openWindow(url));
+    }
   }
 });
-
 
