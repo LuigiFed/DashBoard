@@ -72,13 +72,13 @@ export class FlightsComponent {
       this.router.navigate(['/dashboard/addflights']);
   }
 
-          //funzione per filtrare i voli
+
           filtraVoli() {
             console.log('Filtro attivato con valore:', this.cercaVoli);
             if (!this.cercaVoli || this.cercaVoli.trim() === '') {
               this.voliFiltrati = this.voli.filter((volo) =>
-                volo.numeroVolo && volo.destinazione && volo.status // Solo voli con dati validi
-              ); // Mostra solo i voli con dati completi
+                volo.numeroVolo && volo.destinazione && volo.status
+              );
             } else {
               this.voliFiltrati = this.voli.filter((volo) =>
                 (volo.destinazione && volo.destinazione.toLowerCase().includes(this.cercaVoli.toLowerCase())) ||
@@ -87,7 +87,7 @@ export class FlightsComponent {
               );
             }
 
-            // Se dopo il filtro non ci sono voli validi, puoi fare qualcosa (come un messaggio)
+
             if (this.voliFiltrati.length === 0) {
               console.log('Nessun volo trovato con i dati forniti');
             }
