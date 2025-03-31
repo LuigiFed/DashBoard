@@ -19,22 +19,55 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-// importScripts(
-//   "https://www.gstatic.com/firebasejs/11.4.0/firebase-app-compat.js"
-// );
-// importScripts(
-//   "https://www.gstatic.com/firebasejs/11.4.0/firebase-messaging-compat.js"
-// );
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAxLoKmAErrDTWsgyIRzdVcEFENFXloja4",
-//   authDomain: "angular-fcm-demo-f44d7.firebaseapp.com",
-//   projectId: "angular-fcm-demo-f44d7",
-//   storageBucket: "angular-fcm-demo-f44d7.firebasestorage.app",
-//   messagingSenderId: "188297093909",
-//   appId: "1:188297093909:web:945545a300a03f98de3f1c",
-//   measurementId: "G-BCLH9793T5"
-// };
+messaging.onBackgroundMessage((payload) => {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
 
-// const app = firebase.initializeApp(firebaseConfig);
-// const messaging = firebase.messaging();
+  const flightId = payload.data?.flightId || '';
+  console.log('Flight ID from payload:', flightId);
+  const actions = [
+    { action: 'view', title: 'Dettaglio volo' },
+    { action: 'close', title: 'Chiudi' }
+  ];
+
+  const notificationTitle = 'Notifica volo';
+  const notificationOptions = {
+    body: payload.data?.body || 'Aggiornamento volo disponibile',
+    icon: '/assets/icons/icon-72x72.png',
+    data: { flightId: flightId },
+    requireInteraction: true,
+    actions: actions
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('[firebase-messaging-sw.js] Notification click ', event);
+
+  event.notification.close();
+
+  const flightId = event.notification.data.flightId;
+
+
+  if (event.action === 'view' && flightId) {
+    const url = `/dashboard/flightsDetails?id=${flightId}`;
+    clients.openWindow(url).catch(() => {
+
+
+      self.clients.matchAll().then((clients) => {
+        if (clients && clients.length) {
+          clients[0].navigate(url);
+        } else {
+          window.open(url, '_blank');
+        }
+      });
+    });
+  } else if (event.action === 'close') {
+    console.log('Notifica chiusa dall\'utente.');
+  } else {
+    clients.openWindow('/flights');
+  }
+});
+
+
