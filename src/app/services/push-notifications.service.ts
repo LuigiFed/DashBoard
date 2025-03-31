@@ -107,8 +107,8 @@ export class PushNotificationsService {
       this.requestor.sendSync(
         [flight],
         'processSubscription',
-        //https://flightservlet-latest.onrender.com/flightservlet'
-        'http://localhost:8080/flightservlet'
+        'https://flightservlet-latest.onrender.com/flightservlet'
+        //'http://localhost:8080/flightservlet'
       ).subscribe({
         next: (res: any) => {
           if (res?.result?.acronym !== 'OK') {
