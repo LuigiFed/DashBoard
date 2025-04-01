@@ -1,24 +1,32 @@
 <div class="card-menu">
-  <button class="hamburger" (click)="toggleMenu()">
-    <i class="pi" [ngClass]="{'pi-bars': !isMenuOpen, 'pi-times': isMenuOpen}"></i>
+  <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle menu">
+
+    <i class="pi" [ngClass]="{
+      'pi-bars': !isMenuOpen,
+      'pi-times': isMenuOpen,
+      'hamburger-icon': true
+    }"></i>
   </button>
+
   <ul class="menu" [ngClass]="{'active': isMenuOpen}">
-    <li [routerLink]="['/dashboard/home']" routerLinkActive="router-link-active" (click)="closeMenu()">
-      <i class="pi pi-home"></i> Home
+
+    <li [routerLink]="['/dashboard/home']" routerLinkActive="active" (click)="closeMenu()">
+      Home
     </li>
-    <li [routerLink]="['/dashboard/flights']" routerLinkActive="router-link-active" (click)="closeMenu()">
-      <i class="pi pi-plane"></i> Flights
+    <li [routerLink]="['/dashboard/flights']" routerLinkActive="active" (click)="closeMenu()">
+      Flights
     </li>
-    <li [routerLink]="['/dashboard/lastnews']" routerLinkActive="router-link-active" (click)="closeMenu()">
-      <i class="pi pi-newspaper"></i> Latest News
+    <li [routerLink]="['/dashboard/lastnews']" routerLinkActive="active" (click)="closeMenu()">
+       Latest News
     </li>
-    <li [routerLink]="['/dashboard/addflights']" routerLinkActive="router-link-active" (click)="closeMenu()">
-      <i class="pi pi-plus"></i> Add Flights
+    <li [routerLink]="['/dashboard/addflights']" routerLinkActive="active" (click)="closeMenu()">
+     Add Flights
     </li>
-    <li [routerLink]="['/dashboard/map']" routerLinkActive="router-link-active" (click)="closeMenu()">Map</li>
+    <li [routerLink]="['/dashboard/map']" routerLinkActive="active" (click)="closeMenu()">
+      Map
+    </li>
   </ul>
 </div>
-
 
 
 
