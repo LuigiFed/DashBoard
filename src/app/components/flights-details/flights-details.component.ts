@@ -76,7 +76,6 @@ export class FlightsDetailsComponent implements OnInit {
     window.open(urlUpdate, '_blank');
   }
 
-
   telegramLink(username: string, flightNumber: string) {
     username = 'ServletFlightsBot';
     const Today = new Date(this.voloSelezionato.dataVolo);
@@ -89,7 +88,6 @@ export class FlightsDetailsComponent implements OnInit {
 
     window.open(urlUpdate, '_blank');
   }
-
 
   enablePushNotifications(flight: Flight): void {
     Swal.fire({
