@@ -77,7 +77,18 @@ export class FlightsDetailsComponent implements OnInit {
   }
 
 
+  telegramLink(username: string, flightNumber: string) {
+    username = 'ServletFlightsBot';
+    const Today = new Date(this.voloSelezionato.dataVolo);
+    const flightDate = Today.toISOString().split('T')[0];
 
+    const message = `ISCRIZIONE NOTIFICHE: Vorrei ricevere aggiornamenti sul volo ${flightNumber} del ${flightDate}. #subscribe`;
+    const encodedMessage = encodeURIComponent(message);
+
+    const urlUpdate = `https://t.me/${username}?text=${encodedMessage}`;
+
+    window.open(urlUpdate, '_blank');
+  }
 
 
   enablePushNotifications(flight: Flight): void {
