@@ -6,7 +6,7 @@
   "display": "standalone",
    "scope": "/",
   "start_url":
-  "http://localhost:4200/dashboard/home",
+  "https://dashboard-fstq.onrender.com/dashboard/home",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
