@@ -10,18 +10,27 @@ export class InstallPromptService {
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
-      window.addEventListener('beforeinstallprompt', (e) => {
-        console.log('beforeinstallprompt event fired', e);
-        e.preventDefault();
-        this.deferredPrompt = e;
-        console.log('deferredPrompt set', this.deferredPrompt);
+      if (!this.isIOS()) {
+        window.addEventListener('beforeinstallprompt', (e) => {
+          console.log('beforeinstallprompt event fired', e);
+          e.preventDefault();
+          this.deferredPrompt = e;
+          console.log('deferredPrompt set', this.deferredPrompt);
+          if (this.isMobileDevice()) {
+            console.log('Device is mobile (Android), showing install prompt');
+            this.showInstallPrompt();
+          } else {
+            console.log('Device is not mobile, not showing install prompt');
+          }
+        });
+      } else {
         if (this.isMobileDevice()) {
-          console.log('Device is mobile, showing install prompt');
+          console.log('Device is mobile (iOS), showing install prompt');
           this.showInstallPrompt();
         } else {
           console.log('Device is not mobile, not showing install prompt');
         }
-      });
+      }
     } else {
       console.log('Not running in a browser environment');
     }
@@ -36,17 +45,31 @@ export class InstallPromptService {
     return false;
   }
 
+  private isIOS(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return /iPhone|iPad|iPod/.test(navigator.userAgent);
+    }
+    return false;
+  }
+
   private showInstallPrompt(): void {
     if (isPlatformBrowser(this.platformId)) {
       console.log('showInstallPrompt called');
       const installBanner = document.createElement('div');
-      installBanner.innerHTML = `
-        <p>To install this web app on your device, tap the menu button and then add to home screen.</p>
-        <button id="installButton">Install</button>
-        <button id="closeButton">Close</button>
-      `;
 
-      // Applica gli stili tramite JavaScript
+      if (!this.isIOS()) {
+        installBanner.innerHTML = `
+          <p>To install this web app on your device, tap the Install button.</p>
+          <button id="installButton">Install</button>
+          <button id="closeButton">Close</button>
+        `;
+      } else {
+        installBanner.innerHTML = `
+          <p>To install this web app on your device, tap the share icon and then "Add to Home Screen".</p>
+          <button id="closeButton">Close</button>
+        `;
+      }
+
       installBanner.style.position = 'fixed';
       installBanner.style.bottom = '0';
       installBanner.style.left = '0';
@@ -65,7 +88,7 @@ export class InstallPromptService {
       const installButton = document.getElementById('installButton');
       const closeButton = document.getElementById('closeButton');
 
-      if (installButton) {
+      if (installButton && !this.isIOS()) {
         installButton.style.background = '#1976d2';
         installButton.style.color = 'white';
         installButton.style.border = 'none';

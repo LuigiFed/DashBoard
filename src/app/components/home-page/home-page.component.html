@@ -1,25 +1,27 @@
 <div class="grid grid-nogutter surface-section ">
-  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
+  <div class="col-10 md:col-6 p-1 text-center md:text-left flex align-items-center">
       <section class="text">
-          <span class="block text-6xl font-bold mb-1">Welcome Aboard</span>
-          <div class="text-6xl text-primary font-bold mb-3">to the Ultimate Flight Tracker</div>
-          <p class="mt-0 mb-4  line-height-3">
+          <span class="block text-5xl font-bold mb-1 text-sc">Welcome Aboard</span>
+          <div class="text-5xl text-primary font-bold mb-1 tex-sc">to the Ultimate Flight Tracker</div>
+          <p class=" line-height-3 text-sc1" style="text-align: left;">
               Experience real-time flight tracking like never before.
               Stay updated with live flight data, seamless connections, and a view into the future of travel.
               Buckle up and let your journey begin!
           </p>
-          <button pButton pRipple label="Get Started" type="button" class="mr-3 p-button-raised"></button>
-          <button pButton pRipple label="Explore Features" type="button" class="p-button-outlined"></button>
+          <div class="button-container">
+            <button class="button-raised">Get Started</button>
+            <button class="button-outlined">Explore future</button>
+        </div>
       </section>
   </div>
-  <div class="col-12 md:col-6 overflow-hidden">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/040/862/397/small/ai-generated-a-commercial-civil-aircraft-lands-on-the-runway-at-the-airport-travel-and-transport-concept-ai-generated-image-photo.jpg" alt="Flight Tracker" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%);">
+  <div class="col-12 md:col-6 overflow-hidden" style="display: flex; justify-content: center; align-items: center;">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/040/862/397/small/ai-generated-a-commercial-civil-aircraft-lands-on-the-runway-at-the-airport-travel-and-transport-concept-ai-generated-image-photo.jpg" alt="Flight Tracker" class="img-surface-section">
   </div>
 </div>
 
 <!-- Flights suggestions -->
+<h2 class="suggestions-title">Travel Suggestions</h2>
 <div class="flight-suggestions">
-  <h2 class="suggestions-title">Travel Suggestions</h2>
   <div class="suggestions-container">
     <div *ngFor="let suggestion of travelSuggestions" class="suggestion-card">
 
