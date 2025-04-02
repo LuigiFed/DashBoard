@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Flight } from '../models/flight';
 import { Requestor } from '../../services/requestor';
-import { Result } from '../models/result.model';
+
 
 
 
@@ -30,7 +30,7 @@ export class FlightsComponent {
   voliFiltrati: any[] = [];
 
 
-
+  isAdmin: boolean = true;
 
   constructor(private firebase : HttpFlightsService, private router : Router,private requestor: Requestor) { }
 

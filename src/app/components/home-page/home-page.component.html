@@ -1,21 +1,18 @@
-<div class="grid grid-nogutter surface-section ">
-  <div class="col-10 md:col-6 p-1 text-center md:text-left flex align-items-center">
-      <section class="text">
-          <span class="block text-5xl font-bold mb-1 text-sc">Welcome Aboard</span>
-          <div class="text-5xl text-primary font-bold mb-1 tex-sc">to the Ultimate Flight Tracker</div>
-          <p class=" line-height-3 text-sc1" style="text-align: left;">
+<div class="main-container">
+  <div class="text-container">
+      <section class="text-section">
+          <span class="welcome-text">Welcome Aboard</span>
+          <div class="flight-tracker-text">to the Ultimate Flight Tracker</div>
+          <p class="description-text">
               Experience real-time flight tracking like never before.
               Stay updated with live flight data, seamless connections, and a view into the future of travel.
               Buckle up and let your journey begin!
           </p>
           <div class="button-container">
-            <button [routerLink]="['/dashboard/flights']" routerLinkActive="active"class="button-raised">Get Started</button>
-            <button  [routerLink]="['/dashboard/lastnews']" routerLinkActive="active"class="button-outlined">Explore future</button>
-        </div>
+         <button [routerLink]="['/dashboard/flights']" routerLinkActive="active" class="button-raised">Get Started</button>
+          <button [routerLink]="['/dashboard/lastnews']" routerLinkActive="active" class="button-outlined">Explore future</button>
+          </div>
       </section>
-  </div>
-  <div class="col-12 md:col-6 overflow-hidden" style="display: flex; justify-content: center; align-items: center;">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/040/862/397/small/ai-generated-a-commercial-civil-aircraft-lands-on-the-runway-at-the-airport-travel-and-transport-concept-ai-generated-image-photo.jpg" alt="Flight Tracker" class="img-surface-section">
   </div>
 </div>
 

@@ -3,25 +3,43 @@
 /*#region Surface Section */
 
 
-.surface-section {
+.main-container {
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  height: 400px;
-  margin-bottom: 0;
+  text-align: center;
+  padding: 20px;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.img-surface-section {
+.text-container {
+  max-width: 900px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.text {
-  margin: 30px;
+.text-section {
+  padding: 20px;
 }
 
+.welcome-text {
+  font-size: 3em;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.flight-tracker-text {
+  font-size: 2.5em;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.description-text {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
 /* Bottone raised: dark blue per risaltare sul background chiaro */
 .button-raised {
   background-color: #0057a3;
@@ -37,7 +55,7 @@
   color: #0057a3;
 }
 
-/* Stile base comune per entrambi i bottoni */
+
 button{
   min-width: 150px;
   font-weight: bold;
@@ -286,32 +304,7 @@ p {
     padding: 0;
     box-sizing: content-box;
 }
-        .surface-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            height: auto;
-            width: 100%;
-        }
 
-        .text {
-            width: 100%;
-            padding: 1%;
-            text-align: center;
-            font-size: 1rem;
-            box-sizing: content-box;
-        }
-
-        .text-sc {
-            width: 100%;
-            padding: 1%;
-            text-align: center;
-            font-size: 1rem;
-        }
 
         .button-container {
             display: flex;
@@ -392,20 +385,22 @@ p {
 
   /* Stili specifici per schermi più piccoli di 480px */
   @media (max-width: 480px) {
+
       .text {
           padding: 3rem;
-          font-size: 1rem; /* Modifica solo il padding per schermi molto piccoli */
+          font-size: 1rem;
       }
 
       button[pButton] {
-          min-width: 200px; /* Sovrascrive il min-width per schermi molto piccoli */
+          min-width: 200px;
       }
 
       .suggestion-card {
-          width: 100%; /* La card prende tutta la larghezza*/
+          width: 100%;
       }
   }
 }
+
 
 /*#endregion Responsive */
 /*#endregion Home Page */

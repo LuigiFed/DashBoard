@@ -91,11 +91,11 @@
         </select>
       </td>
 
-      <td>
+      <td *ngIf="isAdmin">
         <button class="delete-btn" (click)="delete(volo); $event.stopPropagation()">Delete</button>
       </td>
 
-      <td>
+      <td *ngIf="isAdmin">
         <button class="edit-btn" *ngIf="!volo.isEditing" (click)="edit(volo); $event.stopPropagation()">Edit</button>
         <button class="save-btn" *ngIf="volo.isEditing" (click)="save(volo); $event.stopPropagation()">Save</button>
       </td>
