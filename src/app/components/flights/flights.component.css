@@ -19,7 +19,7 @@
 }
 
 .custom-row {
-  background-color: #2e79ca31;
+  background-color:rgba(44, 177, 244, 0.304);
   padding: 10px;
 }
 
@@ -148,7 +148,7 @@
   }
 
   .custom-row {
-    background-color: #2e79ca31;
+    background-color:rgba(44, 177, 244, 0.304);
     text-align: center;
     width: 100%;
     padding: 0;
