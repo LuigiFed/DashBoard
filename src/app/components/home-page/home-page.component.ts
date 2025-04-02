@@ -6,12 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { TravelSuggestionsService } from '../../services/travel-suggestions.service';
-
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-home-page',
-  imports: [StyleClassModule, ButtonModule, ChartModule,FormsModule,CommonModule,CardModule], // Usa i moduli PrimeNG
+  imports: [StyleClassModule, ButtonModule, ChartModule,FormsModule,CommonModule,CardModule, RouterLink],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
